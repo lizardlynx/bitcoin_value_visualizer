@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color:#D3DADA ;
+}
+
+canvas {
+  margin-top: 20px;
+  background-color: #D3DADA;
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+button {
+  display: block;
+  margin-bottom: 20px;
+}
