@@ -61,14 +61,10 @@ class Chart {
   drawXY (color) {
 
     this.drawLine(this.startX, this.startY, this.startX, this.endY, color);
-    //this.drawLine(this.startX, this.endY, this.startX - 5, this.endY + 5, color);
-    //this.drawLine(this.startX, this.endY, this.startX + 5, this.endY + 5, color);
     this.c.font = "bold 18px Verdana";
     this.c.fillText('American $', this.startX - 50, this.endY - 50);
     
     this.drawLine(this.startX - 6, this.startY, this.endX, this.startY, color);
-    //this.drawLine(this.endX, this.startY, this.endX - 5, this.startY - 5, color);
-    //this.drawLine(this.endX, this.startY, this.endX - 5, this.startY + 5, color);
   }
 
   drawSect(color) {

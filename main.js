@@ -3,7 +3,6 @@
 const bitcoinCost = [];
 
 document.addEventListener('DOMContentLoaded', () => {
-  //document.getElementById('get').addEventListener("click", getData);
 });
 
 //manipulations with data we get from function getData()
@@ -16,7 +15,6 @@ function updateChart (data) {
     bitcoinCost.push(dataByDay);
   }
   
-  //document.getElementById('cost').innerHTML = `Bitcoin at this date: ${bitcoinCost}`;
 }
 
 //if "POST" posts data on browser, if "GET" gets information from server 
