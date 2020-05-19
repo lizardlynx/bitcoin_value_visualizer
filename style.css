@@ -1,12 +1,12 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #A2C4E0;
+    background-color: #E8EEF1;
 }
 
 canvas {
   margin-top: 20px;
-  background-color: #A2C4E0;
+  background-color: #E8EEF1;
   border: 1px solid black;
   margin-left: auto;
   margin-right: auto;

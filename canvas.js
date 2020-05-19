@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async() => {
 function whenReadyExecute() {
   const chart = new Chart(bitcoinCost);
   chart.drawXY('#071330');
-  chart.findCoords('rgba(158, 134, 106, 0.5)');
+  chart.findCoords('rgba(158, 134, 106, 0.3)');
   chart.drawFunc();
 };
 
@@ -28,6 +28,8 @@ function ifVariableReady() {
   }
 }
 
+
+//class chart creates a chart
 class Chart {
 
   constructor (bitcoinCost) {
@@ -50,6 +52,7 @@ class Chart {
 
   };
 
+  //draws line of a specific color with specific x and y
   drawLine (x1, y1, x2, y2, color) {
     this.c.beginPath();
     this.c.strokeStyle = color;
@@ -58,6 +61,7 @@ class Chart {
     this.c.stroke();
   }
 
+  //draws ox and oy
   drawXY (color) {
 
     this.drawLine(this.startX, this.startY, this.startX, this.endY, color);
@@ -67,6 +71,8 @@ class Chart {
     this.drawLine(this.startX - 6, this.startY, this.endX, this.startY, color);
   }
 
+
+  //finds coordsinats dependant on values
   findCoords(color) {
     const bitcoinCost = this.bitcoinCost;
     let bitcoinValues = [];
@@ -80,6 +86,7 @@ class Chart {
 
       const dailyPrice = bitcoinCost[i - 1].price;
       bitcoinValues.push(dailyPrice);
+
       if (dailyPrice > maxBTCValue) {
         maxBTCValue = dailyPrice;
       }
@@ -89,14 +96,60 @@ class Chart {
     }
 
     const lengthOY = this.startY - this.endY - 20;
-    const dy = lengthOY / numberOfDays;
-    
+    const beforeComma = maxBTCValue.toString().split('.')[0];
+    const numOfDigitsBC = beforeComma.length;
+    let numOfDigitsAC = 0;
+    if (maxBTCValue < 1) {
+      const afterComma = maxBTCValue.toString().split('.')[1];
+      numOfDigitsAC = afterComma.length;
+    } else if (maxBTCValue == 1) {
+      numOfDigitsAC = 1;
+    }
+
+    let cost = '';
+    if (beforeComma != 0) {
+      while (cost.length < numOfDigitsBC - 1) {
+        cost += '0';
+      }
+    } else {
+      while (cost.length < numOfDigitsAC - 1) {
+        cost += '0';
+      }
+    }    
+
+    let value = cost;
+
+    this.c.font = "16px Arial";
+
+    let i = 0;
+
+    while (value <= maxBTCValue) {
+      
+      if (maxBTCValue <= 1) {
+        const y = this.startY - (value * lengthOY / maxBTCValue);
+        this.drawLine(this.startX - 30, y, this.endX, y, color);
+        this.c.fillText(+(value), this.startX - 60, y - 2);
+        if (cost.length > 0) {
+          i = Number('0.' + cost + '1');
+        } else {
+          i = 0.1;
+        }
+        value = +(i + +(value)).toFixed(numOfDigitsAC + 1);
+      } else {
+        value = cost;
+        value = i + value;
+        const y = this.startY - (value * lengthOY / maxBTCValue);
+        this.drawLine(this.startX - 30, y, this.endX, y, color);
+        this.c.fillText(+(value), this.startX - 60, y - 2);
+        i++;
+      }
+    }
+  
     let yByValue = [];
 
     for (let i = 1; i <= numberOfDays; i++) {
       const value = bitcoinValues[i - 1];
       const y = this.startY - (value * lengthOY / maxBTCValue);
-      //this.drawLine(this.startX - 10, y, this.endX, y, color);
       yByValue.push([y, value]);
     }
     
@@ -114,12 +167,14 @@ class Chart {
 
   }
 
+  //this function draws a function
   drawFunc() {
     const bitcoinCost = this.bitcoinCost;
     const numberOfDays = bitcoinCost.length;
 
     this.c.beginPath();
     this.c.strokeStyle = '#F7CB2D';
+    this.c.lineWidth = 2;
     this.c.moveTo(this.dots[0][0], this.dots[0][1]);
 
     for (let i = 1; i < numberOfDays; i++) {
