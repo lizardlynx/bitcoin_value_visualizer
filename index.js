@@ -105,8 +105,8 @@ function grabber(dateStart, dateEnd, limit) {
         time_open: '2019-05-18',
         price_close: 7000,
       },
-    ])); */
-
+    ])); 
+    */
     https.get(`https://rest.coinapi.io/v1/ohlcv/BTC/USD/history?period_id=1DAY&time_start=${dateStart}T00:00:00&time_end=${dateEnd}T00:00:00&limit=${limit}&include_empty_items=false`, options, (res) => {
       const { statusCode } = res;
       console.log(statusCode);

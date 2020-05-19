@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', async() => {
 //this function creates a chart 
 function whenReadyExecute() {
   const chart = new Chart(bitcoinCost);
-  chart.drawXY('#1B3954');
-  chart.drawSect('rgba(158, 134, 106, 0.5)');
+  chart.drawXY('#071330');
+  chart.findCoords('rgba(158, 134, 106, 0.5)');
   chart.drawFunc();
 };
 
@@ -67,7 +67,7 @@ class Chart {
     this.drawLine(this.startX - 6, this.startY, this.endX, this.startY, color);
   }
 
-  drawSect(color) {
+  findCoords(color) {
     const bitcoinCost = this.bitcoinCost;
     let bitcoinValues = [];
     const numberOfDays = bitcoinCost.length;
@@ -87,7 +87,6 @@ class Chart {
       const x = this.startX + dx*i;
       this.drawLine(x, this.startY + 5, x, this.startY, '#1B3954');
     }
-    bitcoinValues.sort();
 
     const lengthOY = this.startY - this.endY - 20;
     const dy = lengthOY / numberOfDays;
@@ -95,9 +94,9 @@ class Chart {
     let yByValue = [];
 
     for (let i = 1; i <= numberOfDays; i++) {
-      const y = this.startY - dy*i;
       const value = bitcoinValues[i - 1];
-      this.drawLine(this.startX - 10, y, this.endX, y, color);
+      const y = this.startY - (value * lengthOY / maxBTCValue);
+      //this.drawLine(this.startX - 10, y, this.endX, y, color);
       yByValue.push([y, value]);
     }
     
@@ -112,7 +111,6 @@ class Chart {
         }
       }
     }
-    console.log(this.dots);
 
   }
 
@@ -121,12 +119,13 @@ class Chart {
     const numberOfDays = bitcoinCost.length;
 
     this.c.beginPath();
-    this.c.strokeStyle = '#1B3954';
+    this.c.strokeStyle = '#F7CB2D';
     this.c.moveTo(this.dots[0][0], this.dots[0][1]);
+
     for (let i = 1; i < numberOfDays; i++) {
       const nextX = this.dots[i][0];
       const nextY = this.dots[i][1];
-      console.log(nextX, nextY);
+
       this.c.lineTo(nextX, nextY);
       this.c.stroke();
     }
