@@ -5,15 +5,30 @@ body {
 }
 
 canvas {
-  margin-top: 20px;
+  margin-top: 0;
   background-color: #E8EEF1;
   border: 1px solid black;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+div.round {
+  border-radius: 50%;
+  background-color: #F7CB2D;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  visibility: hidden;
+}
+
+#wrap-up {
+  margin-top: 20px;
+  position: relative;
   margin-left: auto;
   margin-right: auto;
   display: block;
-}
-
-button {
-  display: block;
-  margin-bottom: 20px;
+  height: 360px;
+  padding: 0;
 }

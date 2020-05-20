@@ -91,19 +91,19 @@ function grabber(dateStart, dateEnd, limit) {
     resolve(JSON.stringify([
       {
         time_open: '2019-05-15',
-        price_close: 40,
+        price_close: 7000,
       },
       {
         time_open: '2019-05-16',
-        price_close: 90,
+        price_close: 12000,
       },
       {
         time_open: '2019-05-17',
-        price_close: 80,
+        price_close: 8000,
       },
       {
         time_open: '2019-05-18',
-        price_close: 70,
+        price_close: 7000,
       },
     ])); */
     
