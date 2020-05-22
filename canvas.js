@@ -79,7 +79,7 @@ class Chart {
   //finds coordinats dependant on values
   findCoords(color) {
 
-    //finding maximum value of bitcoin for drawing y lines 
+    //finding maximum value of bitcoin for drawing y and x lines 
     const bitcoinCost = this.bitcoinCost;
     let bitcoinValues = [];
     const numberOfDays = bitcoinCost.length;
@@ -174,8 +174,8 @@ class Chart {
           break;
         }
       }
-    }
-  }
+    };
+  };
 
   //this function draws a function
   drawFunc(color) {
@@ -194,31 +194,33 @@ class Chart {
       this.c.strokeStyle = color;
       this.c.lineTo(nextX, nextY);
       this.c.stroke();
-    }
-  }
+    };
+  };
 
-  //this function allows to see at which point of function the mouse points
+  //this function allows to see at which part of function the mouse points
   update() {
 
+    const gap = (this.endX - this.startX - 20)/this.bitcoinCost.length;
     //adds a yellow circle 
     document.querySelector('canvas').addEventListener('mousemove', mouse => {
       for (let i = 0; i < this.dots.length; i++) {
         const x = this.dots[i][0];
         const y = this.dots[i][1];
-        if (x - mouse.x < 10 && x - mouse.x > -10) {
+        if (x - mouse.x <= gap/2 && x - mouse.x >= -gap/2) {
           const div = document.getElementsByClassName('round')[0];
           div.style.visibility = 'visible';
           const dif = div.clientHeight/2;
           div.style.left = x - dif;
           div.style.top = y - dif;
         }
-      }
+      };
     });
     
     //removes the yellow circle
-    document.querySelector('canvas').addEventListener('mouseleave', () => {
+    document.getElementById('wrap-up').addEventListener('mouseleave', () => {
       document.getElementsByClassName('round')[0].style.visibility = 'hidden';
-    })
-  }
+    });
+  
+  };
 
-}
+};
