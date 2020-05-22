@@ -1,9 +1,22 @@
+/*body customizing*/
 body {
     margin: 0;
     padding: 0;
     background-color: #E8EEF1;
 }
 
+/*div which contains canvas*/
+#wrap-up {
+  margin-top: 20px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  height: 360px;
+  padding: 0;
+}
+
+/*canvas where the chart is drawn*/
 canvas {
   margin-top: 0;
   background-color: #E8EEF1;
@@ -14,21 +27,43 @@ canvas {
   top: 0;
 }
 
-div.round {
-  border-radius: 50%;
-  background-color: #F7CB2D;
+/*customizing info class*/
+div.info {
   position: absolute;
-  width: 8px;
-  height: 8px;
+  position: relative;
   visibility: hidden;
 }
 
-#wrap-up {
-  margin-top: 20px;
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
+/*customizing yellow circle */
+div.info.yellow-circle {
+  border-radius: 50%;
+  background-color: #F7CB2D;
+  width: 10px;
+  height: 10px;
+}
+
+div.info.yellow-circle:hover {
+  cursor: pointer;
+}
+
+/*customizing the pop-up*/
+.info.yellow-circle::after {
+  content: attr(price);
   display: block;
-  height: 360px;
-  padding: 0;
+  position: absolute;
+  background-color:rgba(61, 91, 89, 0.4);
+  padding: 1em 3em;
+  color: white;
+  white-space: nowrap;
+  border-radius: 5px;
+  font-size: .8em;
+  bottom: 0;
+  left: -500%;
+  transform: scale(0);
+  transition: ease-out 100ms;
+}
+
+.info.yellow-circle:hover::after {
+  transform: scale(1);
+  bottom: 100%;
 }

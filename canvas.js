@@ -70,6 +70,7 @@ class Chart {
     this.drawLine(this.startX, this.startY, this.startX, this.endY, color);
     this.c.font = "bold 18px Verdana";
     this.c.fillStyle = color;
+    this.color = color;
     this.c.fillText('American $', this.startX - 50, this.endY - 50);
     
     this.drawLine(this.startX - 40, this.startY, this.endX, this.startY, color);
@@ -91,7 +92,7 @@ class Chart {
     for (let i = 1; i <= numberOfDays; i++) {
 
       const dailyPrice = bitcoinCost[i - 1].price;
-      bitcoinValues.push(dailyPrice);
+      bitcoinValues.push([dailyPrice, bitcoinCost[i - 1].day]);
 
       if (dailyPrice > maxBTCValue) {
         maxBTCValue = dailyPrice;
@@ -156,7 +157,7 @@ class Chart {
     let yByValue = [];
 
     for (let i = 1; i <= numberOfDays; i++) {
-      const value = bitcoinValues[i - 1];
+      const value = bitcoinValues[i - 1][0];
       const y = this.startY - (value * lengthOY / maxBTCValue);
       yByValue.push([y, value, false]);
     }
@@ -164,12 +165,13 @@ class Chart {
     //finding x by value
     for (let i = 0; i < numberOfDays; i++) {
       const x = this.startX + dx*(i + 1);
-      const valueX = bitcoinValues[i];
+      const valueX = bitcoinValues[i][0];
+      const date = bitcoinValues[i][1];
       for (let j = 0; j < numberOfDays; j++) {
         const y = yByValue[j][0];
         const valueY = yByValue[j][1];
         if (valueX == valueY && yByValue[j][2] !== true) {
-          this.dots.push([x, y]);
+          this.dots.push([x, y, valueX, date]);
           yByValue[j][2] = true;
           break;
         }
@@ -201,26 +203,40 @@ class Chart {
   update() {
 
     const gap = (this.endX - this.startX - 20)/this.bitcoinCost.length;
-    //adds a yellow circle 
+    //adds a yellow circle and info on this point
     document.querySelector('canvas').addEventListener('mousemove', mouse => {
       for (let i = 0; i < this.dots.length; i++) {
         const x = this.dots[i][0];
         const y = this.dots[i][1];
         if (x - mouse.x <= gap/2 && x - mouse.x >= -gap/2) {
-          const div = document.getElementsByClassName('round')[0];
-          div.style.visibility = 'visible';
-          const dif = div.clientHeight/2;
-          div.style.left = x - dif;
-          div.style.top = y - dif;
+
+          //info class
+          const info = document.getElementsByClassName('info')
+          for (let div of info) {
+            div.style.visibility = 'visible';
+          }
+          const circle = info[0];
+          const date = info[1];
+
+          const dif = circle.clientHeight/2;
+          circle.style.left = x - dif;
+          circle.style.top = y - dif;
+
+          //pop-up
+          circle.setAttribute('price', this.dots[i][2] + ` $`);
+
+          //dates
+          date.style.left = x - dif;
+          date.style.top = this.startY;
+          date.innerText = this.dots[i][3];
         }
       };
     });
     
-    //removes the yellow circle
+    //removes the yellow circle when cursor is not on canvas
     document.getElementById('wrap-up').addEventListener('mouseleave', () => {
-      document.getElementsByClassName('round')[0].style.visibility = 'hidden';
+      document.getElementsByClassName('info')[0].style.visibility = 'hidden';
     });
-  
   };
 
 };
