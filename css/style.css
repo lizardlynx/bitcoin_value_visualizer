@@ -1,26 +1,147 @@
 /*body customizing*/
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #E8EEF1;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(49, 49, 49);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/*styling header*/
+h1 {
+  color: #ffffff;
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 50;
+}
+
+/*customizing input date*/
+
+form {
+  display: flex;
+  flex-direction: row;
+}
+
+section {
+  margin: 10px;
+}
+
+label {
+  color: #ffffff;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 20;
+}
+
+input.submit {
+  color: rgb(49, 49, 49);
+  background-color: #fca311;
+  border: none;
+  cursor: pointer;
+  height: 25px;
+  transition: 800ms ease all;
+  font-size: 1.4em;
+  outline: none;
+  padding: 0 2em;
+}
+
+input.submit:hover {
+  background: rgb(49, 49, 49);
+  color: #fca311;
+}
+
+div.wrap-calendar {
+  height: 25px;
+  margin: 5px;
+  position: relative;
+}
+
+div.wrap-calendar::after, div.wrap-calendar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 0;
+  width: 2px;
+  background: #fca311;
+  transition: 400ms ease all;
+}
+
+div.wrap-calendar:hover::after, div.wrap-calendar:hover::before {
+  height: 100%;
+  transition: 800ms ease all;
+  border: none;
+}
+
+div.wrap-calendar::after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+
+/*cusomising button*/
+button {
+  margin: 20px 50px 20px;
+  background: #fca311;
+  border: none;
+  color: rgb(49, 49, 49);
+  position: relative;
+  height: 40px;
+  font-size: 1.4em;
+  padding: 0 2em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+  display: block;
+}
+
+button:hover{
+  background: rgb(49, 49, 49);
+  color: #fca311;
+  border: none;
+}
+
+button::before, button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #fca311;
+  transition: 400ms ease all;
+}
+
+button::after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+
+button:hover::before, button:hover::after{
+  width: 100%;
+  transition: 800ms ease all;
 }
 
 /*div which contains canvas*/
 #wrap-up {
-  margin-top: 20px;
+  margin-top: 100px;
   position: relative;
   margin-left: auto;
   margin-right: auto;
   display: block;
-  height: 360px;
+  height: 400px;
   padding: 0;
 }
 
 /*canvas where the chart is drawn*/
 canvas {
   margin-top: 0;
-  background-color: #E8EEF1;
-  border: 1px solid black;
+  background-color: rgb(49, 49, 49);
   display: block;
   position: absolute;
   left: 0;
@@ -32,12 +153,13 @@ div.info {
   position: absolute;
   position: relative;
   visibility: hidden;
+  color: #ffffff;
 }
 
 /*customizing yellow circle */
 div.info.yellow-circle {
   border-radius: 50%;
-  background-color: #F7CB2D;
+  background-color: #fca311;
   width: 10px;
   height: 10px;
 }
@@ -51,19 +173,15 @@ div.info.yellow-circle:hover {
   content: attr(price);
   display: block;
   position: absolute;
-  background-color:rgba(61, 91, 89, 0.4);
+  background-color:rgba(20, 33, 61, 0.3);
   padding: 1em 3em;
-  color: white;
+  color: #ffffff;
   white-space: nowrap;
   border-radius: 5px;
   font-size: .8em;
-  bottom: 0;
+  bottom: 180%;
   left: -500%;
-  transform: scale(0);
-  transition: ease-out 100ms;
-}
-
-.info.yellow-circle:hover::after {
   transform: scale(1);
-  bottom: 100%;
+  transition: ease-out 100ms;
+  border: 1px solid rgba(252, 163, 17, 0.5);
 }

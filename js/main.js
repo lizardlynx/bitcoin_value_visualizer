@@ -3,6 +3,20 @@
 const bitcoinCost = [];
 
 document.addEventListener('DOMContentLoaded', () => {
+  const submitButton = document.getElementById('submit');
+  
+  submitButton.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const period = document.getElementsByClassName('submit');
+    const startDate = period[0].value;
+    let endDate = period[1].value;
+    const endParsed = endDate.split('-');
+    endParsed[2]++;
+    endDate = endParsed.join('-');
+
+    getData(startDate, endDate);
+  });
 });
 
 //manipulations with data we get from function getData()
@@ -35,9 +49,7 @@ function loadData (method, url, data, callback) {
 }
 
 //function for "GET"ing data
-function getData () {
-  const dateStart = '2019-05-15';
-  const dateEnd = '2020-05-15';
+function getData (dateStart, dateEnd) {
   const limit = '105';
 
   loadData ('GET', `/?${dateStart}?${dateEnd}?${limit}`, null, data => {

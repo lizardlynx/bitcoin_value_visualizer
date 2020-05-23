@@ -1,5 +1,16 @@
 'use strict';
 
+//monthes in parse time
+const monthes = ['Jan', 'Feb', 'March', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+//function for parsing time for better visuals
+function parseTime(time) {
+  const date = time.split('T')[0];
+  const ymd = date.split('-');
+  const month = monthes[ymd[1] - 1];
+  return ymd[2] + ' ' + month + ' ' + ymd[0];
+}
+
 //class chart creates a chart
 class Chart {
 
@@ -36,7 +47,7 @@ class Chart {
     drawXY (color) {
   
       this.drawLine(this.startX, this.startY, this.startX, this.endY, color);
-      this.c.font = "bold 18px Verdana";
+      this.c.font = "18px Verdana";
       this.c.fillStyle = color;
       this.color = color;
       this.c.fillText('American $', this.startX - 50, this.endY - 50);
@@ -67,7 +78,7 @@ class Chart {
         }
   
         const x = this.startX + dx*i;
-        this.drawLine(x, this.startY + 5, x, this.startY, '#1B3954');
+        this.drawLine(x, this.startY + 5, x, this.startY, this.color);
       }
   
       //drawing y lines
@@ -102,9 +113,11 @@ class Chart {
       while (value <= maxBTCValue) {
         
         if (maxBTCValue <= 1) {
-          const y = this.startY - (value * lengthOY / maxBTCValue);
-          this.drawLine(this.startX - 30, y, this.endX, y, color);
-          this.c.fillText(+(value), this.startX - 60, y - 2);
+          if (i !== 0) {
+            const y = this.startY - (value * lengthOY / maxBTCValue);
+            this.drawLine(this.startX - 40, y, this.endX, y, color);
+            this.c.fillText(+(value), this.startX - 60, y - 2);
+          }
           if (cost.length > 0) {
             i = Number('0.' + cost + '1');
           } else {
@@ -114,9 +127,11 @@ class Chart {
         } else {
           value = cost;
           value = i + value;
-          const y = this.startY - (value * lengthOY / maxBTCValue);
-          this.drawLine(this.startX - 30, y, this.endX, y, color);
-          this.c.fillText(+(value), this.startX - 60, y - 2);
+          if (i !== 0) {
+            const y = this.startY - (value * lengthOY / maxBTCValue);
+            this.drawLine(this.startX - 40, y, this.endX, y, color);
+            this.c.fillText(+(value), this.startX - 60, y - 2);
+          }
           i++;
         }
       }
@@ -196,7 +211,7 @@ class Chart {
             //dates
             date.style.left = x - dif;
             date.style.top = this.startY;
-            date.innerText = this.dots[i][3];
+            date.innerText = parseTime(this.dots[i][3]);
           }
         };
       });

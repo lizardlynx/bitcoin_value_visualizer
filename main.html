@@ -2,7 +2,7 @@
 
   <!--head-->
   <head>
-    <title>Bitcoin visualizer</title>
+    <title>Bitcoin Visualizer</title>
    <script src="/js/main.js"></script>
    <script src="/js/chart.js"></script>
    <script src="/js/canvas.js"></script>
@@ -10,14 +10,36 @@
   </head>
 
   <body>
-    <h1>Bitcoin visualizer</h1>
-    <section id="cost">Bitcoin at this date: </section>
+    <h1>Bitcoin Visualizer</h1>
+
+    <!--input section-->
+    <form>
+
+      <!--start date-->
+      <section>
+        <label for="start-date">Enter starting point:</label>
+        <div class="wrap-calendar">
+          <input type="date" class="submit" name="start-date" min="2009-01-03">
+        </div>
+      </section>
+      
+      
+      <!--end date-->
+      <section>
+      <label for="end-date">Enter ending point:</label>
+      <div class="wrap-calendar">
+        <input type="date" class="submit" name="end-date">
+      </div>
+      </section>
+
+      <button type="submit" id="submit">Build Chart</button>
+    </form>
 
     <!--canvas and its attributes-->
-    <div id='wrap-up'>
-      <canvas id='canvas' id='canvas'></canvas>
-      <div class='info yellow-circle' price=''></div>
-      <div class='info' date=''></div>
+    <div id="wrap-up">
+      <canvas id="canvas" id="canvas"></canvas>
+      <div class="info yellow-circle" price=""></div>
+      <div class="info" date=""></div>
     </div>
 
     

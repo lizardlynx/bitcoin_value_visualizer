@@ -8,8 +8,11 @@ const fs = require('fs');
 function readFile (file) {
   return new Promise((resolve, reject) => {
     fs.readFile(file, 'utf8', (err, data) => {
-      if (err) reject(err);
-      else resolve(data);
+      try {
+        resolve(data);
+      } catch (err) {
+        reject(err.message);
+      }
     });
   });
 };
@@ -46,6 +49,10 @@ const routing = {
 //handling rejections in promises
 process.on('unhandledRejection', error => {
   console.log('rejection: ', error.message);
+});
+
+process.on('rejectionHandled', promise => {
+  console.log('rejection handled: ' + promise);
 });
 
 //function for handling requests
@@ -95,7 +102,7 @@ function grabber(dateStart, dateEnd, limit) {
 
   return new Promise((resolve, reject) => {
 
-    /*
+    
     resolve(JSON.stringify([
       {
         time_open: '2019-05-15',
@@ -113,8 +120,8 @@ function grabber(dateStart, dateEnd, limit) {
         time_open: '2019-05-18',
         price_close: 7000,
       },
-    ])); */
-    
+    ])); 
+    /*
     https.get(`https://rest.coinapi.io/v1/ohlcv/BTC/USD/history?period_id=1DAY&time_start=${dateStart}T00:00:00&time_end=${dateEnd}T00:00:00&limit=${limit}&include_empty_items=false`, options, (res) => {
       const { statusCode } = res;
       console.log(statusCode);
@@ -131,8 +138,8 @@ function grabber(dateStart, dateEnd, limit) {
           reject(err.message);
         }
       });
-    });
+    });*/
 
   });
-  
+
 };
