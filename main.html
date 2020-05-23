@@ -1,7 +1,10 @@
 <html>
+
+  <!--head-->
   <head>
     <title>Bitcoin visualizer</title>
    <script src="main.js"></script>
+   <script src="chart.js"></script>
    <script src="canvas.js"></script>
    <link rel="stylesheet" type="text/css" href = "/style.css">
   </head>
@@ -9,10 +12,14 @@
   <body>
     <h1>Bitcoin visualizer</h1>
     <section id="cost">Bitcoin at this date: </section>
+
+    <!--canvas and its attributes-->
     <div id='wrap-up'>
       <canvas id='canvas' id='canvas'></canvas>
       <div class='info yellow-circle' price=''></div>
       <div class='info' date=''></div>
     </div>
+
+    
   </body>
 </html>

@@ -38,6 +38,9 @@ const routing = {
   '/canvas.js':  
                 {'fn': () => readFile('canvas.js'),
                 'type': 'javascript'},
+  '/chart.js': 
+                {'fn': () => readFile('chart.js'),
+                'type': 'javascript'},
 }
 
 //function for handling requests
@@ -124,7 +127,7 @@ function grabber(dateStart, dateEnd, limit) {
         }
       });
     }).on('error', (e) => {
-      reject(`Got error: ${e.message}`);
+      reject(`Got error in grabber: ${e.message}`);
     });
 
   });
