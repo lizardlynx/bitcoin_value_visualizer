@@ -19,8 +19,8 @@ const routing = {
   '/': 
                 {'fn': () => readFile('main.html'),
                 'type': 'html'},
-  '/main.js': 
-                {'fn': () => readFile('main.js'),
+  '/js/main.js': 
+                {'fn': () => readFile('./js/main.js'),
                 'type': 'javascript'},
   '/date': 
                 {'fn': async(str) => {
@@ -32,16 +32,21 @@ const routing = {
                   return dataBTC;
                 },
                 'type': 'plain'},
-  '/style.css':  
-                {'fn': () => readFile('style.css'),
+  '/css/style.css':  
+                {'fn': () => readFile('./css/style.css'),
                 'type': 'css'},
-  '/canvas.js':  
-                {'fn': () => readFile('canvas.js'),
+  '/js/canvas.js':  
+                {'fn': () => readFile('./js/canvas.js'),
                 'type': 'javascript'},
-  '/chart.js': 
-                {'fn': () => readFile('chart.js'),
+  '/js/chart.js': 
+                {'fn': () => readFile('./js/chart.js'),
                 'type': 'javascript'},
 }
+
+//handling rejections in promises
+process.on('unhandledRejection', error => {
+  console.log('rejection: ', error.message);
+});
 
 //function for handling requests
 async function handleRequest (req, res) {
@@ -126,10 +131,8 @@ function grabber(dateStart, dateEnd, limit) {
           reject(err.message);
         }
       });
-    }).on('error', (e) => {
-      reject(`Got error in grabber: ${e.message}`);
     });
 
   });
   
-}
+};
