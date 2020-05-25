@@ -45,6 +45,8 @@ class Chart {
   
     //draws ox and oy
     drawXY (color) {
+
+      this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
   
       this.drawLine(this.startX, this.startY, this.startX, this.endY, color);
       this.c.font = "18px Verdana";

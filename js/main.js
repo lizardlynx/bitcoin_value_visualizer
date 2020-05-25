@@ -1,12 +1,16 @@
 'use strict';
 
-const bitcoinCost = [];
+let bitcoinCost = [];
 
 document.addEventListener('DOMContentLoaded', () => {
   const submitButton = document.getElementById('submit');
   
   submitButton.addEventListener('click', (event) => {
     event.preventDefault();
+
+    const loadGif = document.getElementsByClassName('load')[0];
+    loadGif.style.visibility = 'visible';
+
 
     const period = document.getElementsByClassName('submit');
     const startDate = period[0].value;
@@ -50,7 +54,7 @@ function loadData (method, url, data, callback) {
 
 //function for "GET"ing data
 function getData (dateStart, dateEnd) {
-  const limit = '105';
+  const limit = '100000';
 
   loadData ('GET', `/?${dateStart}?${dateEnd}?${limit}`, null, data => {
     updateChart(data);

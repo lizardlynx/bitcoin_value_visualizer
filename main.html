@@ -10,7 +10,9 @@
   </head>
 
   <body>
-    <h1>Bitcoin Visualizer</h1>
+    <h1>Bitc<span id="coin">
+      <img src="https://lh3.googleusercontent.com/proxy/sKDVFLtIV9LMPh1QqTvFrBoQHoDb2YZyTEgjln2uC4uaLjRthnJ76LTn4t6FvJlV2F4yB5vATFfb2VhfLEau3eJ5K5UO7Q16qgHNsKDqJf7MS35CyNM"/>
+    </span>in Visualizer</h1>
 
     <!--input section-->
     <form>
@@ -28,12 +30,19 @@
       <section>
       <label for="end-date">Enter ending point:</label>
       <div class="wrap-calendar">
-        <input type="date" class="submit" name="end-date">
+        <input type="date" class="submit" name="end-date" min="2009-01-03">
       </div>
       </section>
 
       <button type="submit" id="submit">Build Chart</button>
     </form>
+
+    <!--loading gif-->
+    <section class="load">
+      <img src="https://media.giphy.com/media/WT9wi81vtEhqt17SE4/giphy.gif" class="loading-gif" alt="animated"/>
+      <img src="https://media.giphy.com/media/WT9wi81vtEhqt17SE4/giphy.gif" class="loading-gif" alt="animated"/>
+      <img src="https://media.giphy.com/media/WT9wi81vtEhqt17SE4/giphy.gif" class="loading-gif" alt="animated"/>
+    </section>
 
     <!--canvas and its attributes-->
     <div id="wrap-up">

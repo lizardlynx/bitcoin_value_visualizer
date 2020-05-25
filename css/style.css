@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(49, 49, 49);
+  background-color: rgb(35, 47, 51);
 }
 
 * {
@@ -11,11 +11,22 @@ body {
 
 /*styling header*/
 h1 {
+  font-weight: 30;
   color: #ffffff;
-  margin-top: 20px;
+  margin: 30px;
   text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 50;
+}
+
+span#coin {
+  cursor: text;
+  display: inline-block;
+}
+
+img {
+  height: 35px;
+  width: 35px;
 }
 
 /*customizing input date*/
@@ -23,10 +34,12 @@ h1 {
 form {
   display: flex;
   flex-direction: row;
+  position: relative;
+  margin: 30px;
 }
 
 section {
-  margin: 10px;
+  margin: 0px 10px;
 }
 
 label {
@@ -36,7 +49,7 @@ label {
 }
 
 input.submit {
-  color: rgb(49, 49, 49);
+  color: rgb(35, 47, 51);
   background-color: #fca311;
   border: none;
   cursor: pointer;
@@ -48,13 +61,13 @@ input.submit {
 }
 
 input.submit:hover {
-  background: rgb(49, 49, 49);
+  background: rgb(35, 47, 51);
   color: #fca311;
 }
 
 div.wrap-calendar {
   height: 25px;
-  margin: 5px;
+  margin-top: 5px;
   position: relative;
 }
 
@@ -84,10 +97,12 @@ div.wrap-calendar::after {
 
 /*cusomising button*/
 button {
-  margin: 20px 50px 20px;
+  position: absolute;
+  left: 1000px;
+  margin: 20px 50px 10px;
   background: #fca311;
   border: none;
-  color: rgb(49, 49, 49);
+  color: rgb(35, 47, 51);
   position: relative;
   height: 40px;
   font-size: 1.4em;
@@ -98,8 +113,12 @@ button {
   display: block;
 }
 
+button:active {
+  background-color: #ffffff;
+}
+
 button:hover{
-  background: rgb(49, 49, 49);
+  background: rgb(35, 47, 51);
   color: #fca311;
   border: none;
 }
@@ -127,6 +146,20 @@ button:hover::before, button:hover::after{
   transition: 800ms ease all;
 }
 
+/*loading gif*/
+.load {
+  visibility: hidden;
+  position: absolute;
+  left: 42%;
+}
+
+.loading-gif {
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  display: inline-block;
+}
+
 /*div which contains canvas*/
 #wrap-up {
   margin-top: 100px;
@@ -141,7 +174,7 @@ button:hover::before, button:hover::after{
 /*canvas where the chart is drawn*/
 canvas {
   margin-top: 0;
-  background-color: rgb(49, 49, 49);
+  background-color: rgb(35, 47, 51);
   display: block;
   position: absolute;
   left: 0;
