@@ -11,7 +11,7 @@
 
   <body>
     <h1>Bitc<span id="coin">
-      <img src="https://lh3.googleusercontent.com/proxy/sKDVFLtIV9LMPh1QqTvFrBoQHoDb2YZyTEgjln2uC4uaLjRthnJ76LTn4t6FvJlV2F4yB5vATFfb2VhfLEau3eJ5K5UO7Q16qgHNsKDqJf7MS35CyNM"/>
+      <img src="https://lh3.googleusercontent.com/proxy/oKx-m28ImVcbIkPgmHTp6urICmlRgPNvAb_ehWkDnKU-_Nob5-4eHyxvEr6Wxj55HFislveT0TWx8BQ9N-R6xWSSaWlVcC8THEvun6_JBohX1YhEDN0"/>
     </span>in Visualizer</h1>
 
     <!--input section-->
@@ -28,13 +28,24 @@
       
       <!--end date-->
       <section>
-      <label for="end-date">Enter ending point:</label>
-      <div class="wrap-calendar">
-        <input type="date" class="submit" name="end-date" min="2009-01-03">
-      </div>
+        <label for="end-date">Enter ending point:</label>
+        <div class="wrap-calendar">
+          <input type="date" class="submit" name="end-date" min="2009-01-03">
+        </div>
       </section>
 
+      <!--button submit-->
       <button type="submit" id="submit">Build Chart</button>
+
+      <!--choosing currency-->
+      <section>
+        <input type="radio" id="USD" name="currency" value="USD" class="currency">
+        <label for="USD">American $</label>
+
+        <input type="radio" id="UAH" name="currency" value="UAH" class="currency">
+        <label for="UAH">Ukrainian ₴</label>
+      </section>
+      
     </form>
 
     <!--loading gif-->

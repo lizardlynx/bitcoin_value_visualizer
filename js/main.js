@@ -1,6 +1,7 @@
 'use strict';
 
 let bitcoinCost = [];
+let currency = 'USD';
 
 document.addEventListener('DOMContentLoaded', () => {
   const submitButton = document.getElementById('submit');
@@ -19,7 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
     endParsed[2]++;
     endDate = endParsed.join('-');
 
-    getData(startDate, endDate);
+    const currencies = document.getElementsByClassName('currency');
+    for (let i = 0; i < currencies.length; i++) {
+      if (currencies[i].checked == true) {
+        currency = currencies[i].value;
+      }
+    }
+
+    getData(startDate, endDate, currency);
   });
 });
 
@@ -53,10 +61,9 @@ function loadData (method, url, data, callback) {
 }
 
 //function for "GET"ing data
-function getData (dateStart, dateEnd) {
-  const limit = '100000';
+function getData (dateStart, dateEnd, currency) {
 
-  loadData ('GET', `/?${dateStart}?${dateEnd}?${limit}`, null, data => {
+  loadData ('GET', `/?${dateStart}?${dateEnd}?${currency}`, null, data => {
     updateChart(data);
   });
     

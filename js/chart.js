@@ -52,7 +52,8 @@ class Chart {
       this.c.font = "18px Verdana";
       this.c.fillStyle = color;
       this.color = color;
-      this.c.fillText('American $', this.startX - 50, this.endY - 50);
+
+      this.c.fillText(currency, this.startX - 50, this.endY - 50);
       
       this.drawLine(this.startX - 40, this.startY, this.endX, this.startY, color);
     }

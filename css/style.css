@@ -98,7 +98,7 @@ div.wrap-calendar::after {
 /*cusomising button*/
 button {
   position: absolute;
-  left: 1000px;
+  left: 50%;
   margin: 20px 50px 10px;
   background: #fca311;
   border: none;
