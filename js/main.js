@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currencies = document.getElementsByClassName('currency');
     for (let i = 0; i < currencies.length; i++) {
       if (currencies[i].checked == true) {
-        currency = currencies[i].value;
+        currency = currencies[i].id;
       }
     }
 

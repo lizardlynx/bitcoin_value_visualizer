@@ -15,7 +15,17 @@
     </span>in Visualizer</h1>
 
     <!--input section-->
+
     <form>
+
+      <!--choosing currency-->
+    <section>
+      <input type="radio" id="USD" name="currency" value="$" class="currency">
+      <label for="USD" class="currency-customizing">American $</label>
+      
+      <input type="radio" id="UAH" name="currency" value="₴" class="currency">
+      <label for="UAH" class="currency-customizing">Ukrainian ₴</label>
+    </section>
 
       <!--start date-->
       <section>
@@ -36,15 +46,6 @@
 
       <!--button submit-->
       <button type="submit" id="submit">Build Chart</button>
-
-      <!--choosing currency-->
-      <section>
-        <input type="radio" id="USD" name="currency" value="USD" class="currency">
-        <label for="USD">American $</label>
-
-        <input type="radio" id="UAH" name="currency" value="UAH" class="currency">
-        <label for="UAH">Ukrainian ₴</label>
-      </section>
       
     </form>
 

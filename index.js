@@ -115,7 +115,6 @@ function grabber(dateStart, dateEnd, currency) {
       }).on('end', () => {
         try {
           resolve(result);
-          console.log(result);
         } catch (err) {
           reject(err.message);
         }

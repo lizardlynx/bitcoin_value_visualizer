@@ -15,7 +15,7 @@ function parseTime(time) {
 class Chart {
 
     constructor (bitcoinCost) {
-      this.bitcoinCost = bitcoinCost
+      this.bitcoinCost = bitcoinCost;
   
       this.canvas = document.querySelector('canvas');
       this.c = canvas.getContext('2d');
@@ -28,8 +28,6 @@ class Chart {
   
       this.endX = this.canvas.width - this.startX;
       this.endY = this.canvas.height - this.startY;
-  
-      this.dots = [];
   
     };
   
@@ -45,7 +43,6 @@ class Chart {
   
     //draws ox and oy
     drawXY (color) {
-
       this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
   
       this.drawLine(this.startX, this.startY, this.startX, this.endY, color);
@@ -63,6 +60,7 @@ class Chart {
     findCoords(color) {
   
       //finding maximum value of bitcoin for drawing y and x lines 
+      this.dots = [];
       const bitcoinCost = this.bitcoinCost;
       let bitcoinValues = [];
       const numberOfDays = bitcoinCost.length;
@@ -187,15 +185,17 @@ class Chart {
   
     //this function allows to see at which part of function the mouse points
     update() {
-  
       const gap = (this.endX - this.startX - 20)/this.bitcoinCost.length;
+      const dots = this.dots;
+      const startY = this.startY;
+      
       //adds a yellow circle and info on this point
-      document.querySelector('canvas').addEventListener('mousemove', mouse => {
-        for (let i = 0; i < this.dots.length; i++) {
-          const x = this.dots[i][0];
-          const y = this.dots[i][1];
+      function moveCircle(mouse) {
+        for (let i = 0; i < dots.length; i++) {
+          const x = dots[i][0];
+          const y = dots[i][1];
           if (x - mouse.x <= gap/2 && x - mouse.x >= -gap/2) {
-  
+
             //info class
             const info = document.getElementsByClassName('info')
             for (let div of info) {
@@ -203,29 +203,39 @@ class Chart {
             };
             const circle = info[0];
             const date = info[1];
-  
+
             const dif = circle.clientHeight/2;
             circle.style.left = x - dif;
             circle.style.top = y - dif;
-  
+
             //pop-up
-            circle.setAttribute('price', this.dots[i][2] + ` $`);
-  
+            circle.setAttribute('price', dots[i][2] + ` ${document.getElementById(currency).value}`);
+
             //dates
             date.style.left = x - dif;
-            date.style.top = this.startY;
-            date.innerText = parseTime(this.dots[i][3]);
+            date.style.top = startY;
+            date.innerText = parseTime(dots[i][3]);
           }
         };
-      });
+      }
+      document.querySelector('canvas').addEventListener('mousemove', moveCircle);
       
-      //removes the yellow circle and date when cursor is not on canvas
       document.getElementById('wrap-up').addEventListener('mouseleave', () => {
+
+        //removes the yellow circle and date when cursor is not on canvas
         const info = document.getElementsByClassName('info')
-          for (let div of info) {
-            div.style.visibility = 'hidden';
-          };
-      });
+        for (let div of info) {
+          div.style.visibility = 'hidden';
+        };
+
+        //removes eventlistener for calling a yellow circle when clicked "submit"
+        const submitButton = document.getElementById('submit');
+  
+        submitButton.addEventListener('click', (event) => {
+          event.preventDefault();
+          document.querySelector('canvas').removeEventListener('mousemove', moveCircle);
+        });
+      });      
     };
   
   };
