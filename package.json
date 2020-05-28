@@ -1,0 +1,28 @@
+{
+  "name": "bitcoin_charts",
+  "version": "0.0.1",
+  "description": "Diploma project for visualizing value of bitcoin with charts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lizardlynx/bitcoin_value_visualizer.git"
+  },
+  "keywords": [
+    "bitcoin",
+    "js",
+    "btc",
+    "server",
+    "api",
+    "cache",
+    "chart"
+  ],
+  "author": "lizardlynx",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lizardlynx/bitcoin_value_visualizer/issues"
+  },
+  "homepage": "https://github.com/lizardlynx/bitcoin_value_visualizer#readme"
+}
