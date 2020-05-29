@@ -31,13 +31,13 @@ function existsFile(file) {
   });
 }
 
-//types of requests
+//types of request extensions
 const routing = {
-  '/':
-                { 'fn': () => readFile('main.html'),
+  'html':
+                { 'fn': file => readFile('./' + file),
                   'type': 'text/html' },
-  '/js/main.js':
-                { 'fn': () => readFile('./js/main.js'),
+  'js':
+                { 'fn': file => readFile('./' + file),
                   'type': 'text/javascript' },
   '/date':
                 { 'fn': str => {
@@ -50,17 +50,11 @@ const routing = {
                   return dataBTC;
                 },
                 'type': 'text/plain' },
-  '/css/style.css':
-                { 'fn': () => readFile('./css/style.css'),
+  'css':
+                { 'fn': file => readFile('./' + file),
                   'type': 'text/css' },
-  '/js/canvas.js':
-                { 'fn': () => readFile('./js/canvas.js'),
-                  'type': 'text/javascript' },
-  '/js/chart.js':
-                { 'fn': () => readFile('./js/chart.js'),
-                  'type': 'text/javascript' },
-  '/images/bitcoin.png':
-               { 'fn': () => readFile('./images/bitcoin.png'),
+  'png':
+               { 'fn': file => readFile('./' + file),
                  'type': 'image/png' },
 };
 
@@ -129,19 +123,24 @@ async function researchCache(key) {
 
 //function for handling requests
 async function handleRequest(req, res) {
+  const url = req.url;
+  let name = url;
   const method = req.method;
-  let url = req.url;
-  const info = url;
+  let extention = url.split('.')[1];
   console.log(url);
+
   if (method === 'GET') {
     if (url[1] === '?') {
-      url = '/date';
+      extention = '/date';
+    } else if (url === '/') {
+      extention = 'html';
+      name = 'main.html';
     }
-    const result = routing[url];
+    const result = routing[extention];
     if (result !== undefined) {
       const func = result['fn'];
       const typeAns = result['type'];
-      const data = await func(info);
+      const data = await func(name);
 
       res.writeHead(200, { 'Content-Type': `${typeAns}; charset=utf-8` });
       res.write(data);

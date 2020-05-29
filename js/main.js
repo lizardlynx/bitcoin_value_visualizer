@@ -1,34 +1,66 @@
 /* eslint-disable no-unused-vars */
 'use strict';
 
-const bitcoinCost = [];
+//this function checks if inserted dates are okay
+function checkDate(start, end) {
+  const startDate = start.split('-').join(' ');
+  const endDate = end.split('-').join(' ');
+  const startTimestamp = +(new Date(startDate));
+  const endTimestamp = +(new Date(endDate));
+  if (startTimestamp >= endTimestamp) {
+    return 'Start date should be less than the end date.';
+  } else if (isNaN(startTimestamp)) {
+    return 'Please insert starting date.';
+  } else if (isNaN(endTimestamp)) {
+    return 'Please insert ending date.';
+  } else return true;
+}
+
+//this function updates max allowed dates
+function updateMaxDate() {
+  const period = document.getElementsByClassName('submit');
+  const startDate = period[0];
+  const endDate = period[1];
+  startDate.max = new Date().toISOString().split('T')[0];
+  endDate.max = new Date().toISOString().split('T')[0];
+}
+
+// eslint-disable-next-line prefer-const
+let bitcoinCost = [];
 let currency = 'USD';
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  updateMaxDate();
+
   const submitButton = document.getElementById('submit');
 
   submitButton.addEventListener('click', event => {
     event.preventDefault();
 
-    const loadGif = document.getElementsByClassName('load')[0];
-    loadGif.style.visibility = 'visible';
-
-
     const period = document.getElementsByClassName('submit');
-    const startDate = period[0].value;
-    let endDate = period[1].value;
-    const endParsed = endDate.split('-');
-    endParsed[2]++;
+    let startDate = period[0];
+    let endDate = period[1];
+
+    startDate = startDate.value;
+    const endParsed = endDate.value.split('-');
     endDate = endParsed.join('-');
 
-    const currencies = document.getElementsByClassName('currency');
-    for (let i = 0; i < currencies.length; i++) {
-      if (currencies[i].checked === true) {
-        currency = currencies[i].id;
+    const correctFormat = checkDate(startDate, endDate);
+    console.log(correctFormat);
+    if (correctFormat === true) {
+      const loadGif = document.getElementsByClassName('load')[0];
+      loadGif.style.visibility = 'visible';
+      const currencies = document.getElementsByClassName('currency');
+      for (let i = 0; i < currencies.length; i++) {
+        if (currencies[i].checked === true) {
+          currency = currencies[i].id;
+        }
       }
+      getData(startDate, endDate, currency);
+    } else {
+      console.log(correctFormat);
     }
-
-    getData(startDate, endDate, currency);
   });
 });
 

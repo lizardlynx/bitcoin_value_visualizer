@@ -240,6 +240,7 @@ class Chart {
         event.preventDefault();
         // eslint-disable-next-line max-len
         document.querySelector('canvas').removeEventListener('mousemove', moveCircle);
+        this.dots = [];
       });
     });
   }
