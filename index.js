@@ -7,7 +7,7 @@ const fs = require('fs');
 //this function asyncronously reads file
 function readFile(file) {
   return new Promise((resolve, reject) => {
-    fs.readFile(file, 'utf8', (err, data) => {
+    fs.readFile(file, (err, data) => {
       if (err) console.log(err);
       try {
         resolve(data);
@@ -60,9 +60,8 @@ const routing = {
                 { 'fn': () => readFile('./js/chart.js'),
                   'type': 'text/javascript' },
   '/images/bitcoin.png':
-                { 'fn': () => readFile('./images/bitcoin.png'),
-                  'type': 'image/png',
-                  'add': 'base64' },
+               { 'fn': () => readFile('./images/bitcoin.png'),
+                 'type': 'image/png' },
 };
 
 //handling rejections in promises
@@ -86,26 +85,6 @@ const options = {
 function grabber(dateStart, dateEnd, currency) {
 
   return new Promise((resolve, reject) => {
-
-    /*
-    resolve(JSON.stringify([
-      {
-        time_open: '2019-05-15',
-        price_close: 7000,
-      },
-      {
-        time_open: '2019-05-16',
-        price_close: 12000,
-      },
-      {
-        time_open: '2019-05-17',
-        price_close: 8000,
-      },
-      {
-        time_open: '2019-05-18',
-        price_close: 7000,
-      },
-    ])); */
 
     https.get(`https://rest.coinapi.io/v1/ohlcv/BTC/${currency}/history?period_id=1DAY&time_start=${dateStart}T00:00:00&time_end=${dateEnd}T00:00:00&limit=100000&include_empty_items=false`, options, res => {
       const { statusCode } = res;
@@ -164,11 +143,9 @@ async function handleRequest(req, res) {
       const typeAns = result['type'];
       const data = await func(info);
 
-      if (result['add']) {
-        res.writeHead(200, { 'Content-Type': `${typeAns}; charset=base64` });
-      // eslint-disable-next-line max-len
-      } else res.writeHead(200, { 'Content-Type': `${typeAns}; charset=utf-8` });
-      res.end(data);
+      res.writeHead(200, { 'Content-Type': `${typeAns}; charset=utf-8` });
+      res.write(data);
+      res.end();
     }
   } else if (method === 'POST') {
     console.log('POST');
