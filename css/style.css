@@ -27,19 +27,30 @@ span#coin {
 img {
   height: 35px;
   width: 35px;
-  border-radius: 50%;
+  border-radius: 47%;
 }
 
 /*customizing input date*/
 
 form {
-  display: flex;
-  flex-direction: row;
   position: relative;
 }
 
+div.input {
+  display: inline-block;
+  vertical-align: top;
+}
+
 section {
-  margin: 0px 10px;
+  margin: 0px 0px;
+  width: 200px;
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+section.date {
+  height: 60px;
+  margin: 5px 30px;
 }
 
 label {
@@ -127,6 +138,8 @@ button {
   position: absolute;
   left: 35%;
   margin: 20px 50px 10px;
+  display: inline-block;
+  vertical-align: top;
   background: #fca311;
   border: none;
   color: rgb(35, 47, 51);
@@ -137,7 +150,6 @@ button {
   cursor: pointer;
   transition: 400ms ease all;
   outline: none;
-  display: block;
 }
 
 button:hover{
@@ -174,6 +186,7 @@ button:hover::before, button:hover::after{
   visibility: hidden;
   position: absolute;
   left: 42%;
+  width: 400px;
 }
 
 .loading-gif {
@@ -185,22 +198,56 @@ button:hover::before, button:hover::after{
 
 /*div which contains canvas*/
 #wrap-up {
-  margin-top: 100px;
   position: relative;
   margin-left: auto;
   margin-right: auto;
   display: block;
   height: 400px;
   padding: 0;
+  width: 100%;
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1648px) {
+  button {
+    left: 20%;
+  }
+}
+
+@media screen and (min-width: 1080px) and (max-width: 1399px) {
+  button {
+    left: 10%;
+  }
+}
+
+@media screen and (min-width: 778px) and (max-width: 1079px) {
+  button {
+    left: 1.5%;
+    margin-left: 25px;
+  }
+}
+
+@media screen and (max-width: 777px) {
+  button {
+    left: 1.5%;
+    margin-left: 25px;
+    height: 50px;
+  }
+  #wrap-up {
+    height: 250px;
+  }
+  canvas {
+    margin: 5px;
+  }
 }
 
 /*canvas where the chart is drawn*/
 canvas {
-  margin-top: 0;
+  margin: 0;
   background-color: rgb(35, 47, 51);
   position: absolute;
   left: 0;
   top: 0;
+  padding: 0 auto;
 }
 
 /*customizing info class*/

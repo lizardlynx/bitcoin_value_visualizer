@@ -17,32 +17,32 @@
     <!--input section-->
 
     <form>
-
       <!--choosing currency-->
-    <section>
-      <input type="radio" id="USD" name="currency" value="$" class="currency">
-      <label for="USD" class="currency-customizing">American $</label>
+      <section>
+        <input type="radio" id="USD" name="currency" value="$" class="currency">
+        <label for="USD" class="currency-customizing">American $</label>
       
-      <input type="radio" id="UAH" name="currency" value="₴" class="currency">
-      <label for="UAH" class="currency-customizing">Ukrainian ₴</label>
-    </section>
+        <input type="radio" id="UAH" name="currency" value="₴" class="currency">
+        <label for="UAH" class="currency-customizing">Ukrainian ₴</label>
+      </section>
 
-      <!--start date-->
-      <section>
-        <label for="start-date">Enter starting point:</label>
-        <div class="wrap-calendar">
-          <input type="date" class="submit" name="start-date" min="2009-01-03">
-        </div>
-      </section>
+      <div class="input">
+        <!--start date-->
+        <section class="date">
+          <label for="start-date">Enter starting point:</label>
+          <div class="wrap-calendar">
+            <input type="date" class="submit" name="start-date" min="2009-01-03">
+          </div>
+        </section>
       
-      
-      <!--end date-->
-      <section>
-        <label for="end-date">Enter ending point:</label>
-        <div class="wrap-calendar">
-          <input type="date" class="submit" name="end-date" min="2009-01-04">
-        </div>
-      </section>
+        <!--end date-->
+        <section class="date">
+          <label for="end-date">Enter ending point:</label>
+          <div class="wrap-calendar">
+            <input type="date" class="submit" name="end-date" min="2009-01-04">
+          </div>
+        </section>
+      </div>
 
       <!--button submit-->
       <button type="submit" id="submit">Build Chart</button>

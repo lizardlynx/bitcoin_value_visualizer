@@ -22,15 +22,27 @@ class Chart {
     this.canvas = document.querySelector('canvas');
     this.c = this.canvas.getContext('2d');
 
+  }
+
+  //updates width and height
+  chartHeightAndWidth() {
     this.canvas.width = document.getElementById('wrap-up').clientWidth;
     this.canvas.height = document.getElementById('wrap-up').clientHeight;
 
-    this.startX = this.canvas.width * 1 / 10;
+    let k = 1;
+
+    if (this.canvas.width < 652 && this.canvas.width >= 314) {
+      k = 2;
+    } else if (this.canvas.width < 314) {
+      k = 2.5;
+    }
+
+    this.startX = this.canvas.width * k / 10;
     this.startY = this.canvas.height * 8 / 10;
 
     this.endX = this.canvas.width - this.startX;
     this.endY = this.canvas.height - this.startY;
-
+    console.log(this.canvas.width, this.canvas.height);
   }
 
   //draws line of a specific color with specific x and y
@@ -45,7 +57,9 @@ class Chart {
 
   //draws ox and oy
   drawXY(color) {
+    this.dots = [];
     this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.chartHeightAndWidth();
 
     this.drawLine(this.startX, this.startY, this.startX, this.endY, color);
     this.c.font = '18px Verdana';
@@ -53,7 +67,7 @@ class Chart {
     this.color = color;
 
     // eslint-disable-next-line no-undef
-    this.c.fillText(currency, this.startX - 50, this.endY - 50);
+    this.c.fillText(currency, this.startX - 10, this.endY - 34);
 
     this.drawLine(this.startX - 40, this.startY, this.endX, this.startY, color);
   }
@@ -61,6 +75,7 @@ class Chart {
 
   //finds coordinats dependant on values
   findCoords(color) {
+    this.color2 = color;
 
     //finding maximum value of bitcoin for drawing y and x lines
     this.dots = [];
@@ -80,9 +95,6 @@ class Chart {
       if (dailyPrice > maxBTCValue) {
         maxBTCValue = dailyPrice;
       }
-
-      const x = this.startX + dx * i;
-      this.drawLine(x, this.startY + 5, x, this.startY, this.color);
     }
 
     //drawing y lines
@@ -168,6 +180,7 @@ class Chart {
 
   //this function draws a function
   drawFunc(color) {
+    this.color3 = color;
     const bitcoinCost = this.bitcoinCost;
     const numberOfDays = bitcoinCost.length;
 
@@ -240,7 +253,6 @@ class Chart {
         event.preventDefault();
         // eslint-disable-next-line max-len
         document.querySelector('canvas').removeEventListener('mousemove', moveCircle);
-        this.dots = [];
       });
     });
   }
