@@ -156,8 +156,8 @@ async function handleRequest(req, res) {
 //creating server
 const server = http.createServer();
 
-server.listen(8080, () => {
-  console.log('Server running on port 8080...');
+server.listen(3000, () => {
+  console.log('Server running on port 3000...');
 });
 
 server.on('request', handleRequest);
