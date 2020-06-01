@@ -20,10 +20,9 @@ This project uses api from [here](https://www.coinapi.io/).
 For better and faster working added cache.
 
 ## Issues
-The api, that is used for this project allows to get not more then 100.000 items, which means that user cannot choose more than 100.000 days.
+The api, that is used for this project allows to get not more then 100.000 items, which means that user cannot choose more than 100.000 days.  
+Ending date is not included in shown period of time.
 
 ## TODO
-* give user warning when entering wrong date or time;
 * improve interface;
-* add eslint;
 * add more currencies.
