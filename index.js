@@ -156,7 +156,7 @@ async function handleRequest(req, res) {
 //creating server
 const server = http.createServer();
 
-server.listen(8080, () => {
+server.listen(process.env.PORT || 5000, () => {
   console.log('Server running on port 8080...');
 });
 

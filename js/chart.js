@@ -66,7 +66,7 @@ class Chart {
     this.color = color;
 
     // eslint-disable-next-line no-undef
-    this.c.fillText(currency, this.startX - 10, this.endY - 34);
+    this.c.fillText(currency, this.startX - 10, this.endY - 30);
 
     this.drawLine(this.startX - 40, this.startY, this.endX, this.startY, color);
   }
