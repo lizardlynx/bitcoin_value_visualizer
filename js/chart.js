@@ -42,7 +42,6 @@ class Chart {
 
     this.endX = this.canvas.width - this.startX;
     this.endY = this.canvas.height - this.startY;
-    console.log(this.canvas.width, this.canvas.height);
   }
 
   //draws line of a specific color with specific x and y

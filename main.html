@@ -30,17 +30,19 @@
         <!--start date-->
         <section class="date">
           <label for="start-date">Enter starting point:</label>
-          <div class="wrap-calendar">
-            <input type="date" class="submit" name="start-date" min="2009-01-03">
+          <div class="wrap-calendar" id="start">
+            <input type="date" class="submit" name="start-date" min="2009-01-04">
           </div>
+          <div id="wrong-input-start"></div>
         </section>
       
         <!--end date-->
         <section class="date">
           <label for="end-date">Enter ending point:</label>
-          <div class="wrap-calendar">
+          <div class="wrap-calendar" id="end">
             <input type="date" class="submit" name="end-date" min="2009-01-04">
           </div>
+          <div id="wrong-input-end"></div>
         </section>
       </div>
 

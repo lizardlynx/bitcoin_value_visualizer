@@ -43,20 +43,25 @@ div.input {
 
 section {
   margin: 0px 0px;
-  width: 200px;
+  width: 206px;
   display: inline-block;
-  vertical-align: baseline;
+  vertical-align: top;
 }
 
 section.date {
-  height: 60px;
+  height: auto;
   margin: 5px 30px;
+  position: relative;
 }
 
 label {
   color: #ffffff;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 20;
+  font-size: 22;
+}
+
+div.wrap-calendar {
+  width: 206px;
 }
 
 input.submit {
@@ -64,11 +69,13 @@ input.submit {
   background-color: #fca311;
   border: none;
   cursor: pointer;
-  height: 25px;
+  height: 27px;
   transition: 400ms ease all;
   font-size: 1.4em;
   outline: none;
   padding: 0 2em;
+  width: 206px;
+  padding: 0px 5px;
 }
 
 input.submit:hover {
@@ -76,8 +83,8 @@ input.submit:hover {
   color: #fca311;
 }
 
-div.wrap-calendar {
-  height: 25px;
+div#start.wrap-calendar, div#end.wrap-calendar {
+  height: 27px;
   margin-top: 5px;
   position: relative;
 }
@@ -100,14 +107,26 @@ div.wrap-calendar:hover::after, div.wrap-calendar:hover::before {
 }
 
 div.wrap-calendar::after {
-  right: inherit;
+  right: 0;
   top: inherit;
   left: 0;
   bottom: 0;
 }
 
-/*customizing radio buttons*/
+/*customizing div under calendar*/
+div#wrong-input-start, div#wrong-input-end {
+  visibility: hidden;
+  width: 206px;
+  border-bottom: 1px solid #fa0008;
+  color:  rgba(240, 62, 62, 0.8);
+  text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 21;
+  margin-bottom: 5px;
+  display: block;
+}
 
+/*customizing radio buttons*/
 section input.currency{
   display: none;
 }
@@ -117,13 +136,14 @@ section label.currency-customizing {
   color: #fca311;
 	background-color: rgb(35, 47, 51);
 	border: solid 1px rgba(252, 163, 17, 0.3);
-	padding: 20px 30px;
+	padding: 15px 20px;
 	overflow: hidden;
 	display: block;
   position: relative;
   transition: 400ms ease all;
   cursor: pointer;
   width: 150px;
+  font-size: 20;
 }
 
 section label.currency-customizing:hover {
@@ -184,15 +204,15 @@ button:hover::before, button:hover::after{
 /*loading gif*/
 .load {
   visibility: hidden;
-  position: absolute;
-  left: 42%;
-  width: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .loading-gif {
   border-radius: 50%;
-  height: 80px;
-  width: 80px;
+  height: auto;
+  width: 30%;
   display: inline-block;
 }
 
