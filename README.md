@@ -1,4 +1,7 @@
 # Bitcoin Value Visualizer
+Now published [here](https://bitcoin-value-vizualizer.herokuapp.com/)!  
+
+## Short Description
 Diploma project for visualizing value of bitcoin with charts.
 
 ## Concept 
