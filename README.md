@@ -1,5 +1,6 @@
 # Bitcoin Value Visualizer
 Now published [here](https://bitcoin-value-vizualizer.herokuapp.com/)!  
+(chart may not be working because of the small number of requests available)
 
 ## Short Description
 Diploma project for visualizing value of bitcoin with charts.
@@ -25,7 +26,9 @@ For better and faster working added cache.
 ## Issues
 The api, that is used for this project allows to get not more then 100.000 items, which means that user cannot choose more than 100.000 days.  
 Ending date is not included in shown period of time.
+Only 100 requests a day available.
 
 ## TODO
-* improve interface;
+* improve interface;  
+* stop site when loading very long;
 * add more currencies.
