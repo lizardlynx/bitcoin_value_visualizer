@@ -46,6 +46,7 @@ function checkDate(start, end) {
     divStart.innerText = 'Please insert starting date.';
     divEnd.style.visibility = 'visible';
     divEnd.innerText = 'Please insert ending date.';
+    return false;
   } else if (minTimestamp > startTimestamp) {
     const inf = `Minimal date you can enter is ${minDates[currency]}`;
     divStart.style.visibility = 'visible';
@@ -87,6 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
   submitButton.addEventListener('click', event => {
     event.preventDefault();
 
+    const errorSect = document.getElementById('error');
+    errorSect.style.visibility = 'hidden';
+
     const period = document.getElementsByClassName('submit');
     let startDate = period[0];
     let endDate = period[1];
@@ -107,21 +111,33 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       getData(startDate, endDate, currency);
     } else {
-      console.log(correctFormat);
+      console.log(correctFormat + ' format of date input');
     }
   });
 });
 
 //manipulations with data we get from function getData()
 function updateChart(data) {
-  const bitcoinData = JSON.parse(data);
-  console.log(bitcoinData);
-  for (const day of bitcoinData) {
-    const dataByDay = { day: day.time_open,
-      price: day.price_close };
-    bitcoinCost.push(dataByDay);
+  try {
+    const bitcoinData = JSON.parse(data);
+    console.log(bitcoinData);
+    for (const day of bitcoinData) {
+      const dataByDay = { day: day.time_open,
+        price: day.price_close };
+      bitcoinCost.push(dataByDay);
+    }
+  } catch (err) {
+    if (typeof data === 'string') {
+      const loadGif = document.getElementsByClassName('load')[0];
+      loadGif.style.visibility = 'hidden';
+      const errorSect = document.getElementById('error');
+      errorSect.innerText = data;
+      errorSect.style.visibility = 'visible';
+      console.log(data);
+    } else {
+      console.log(err);
+    }
   }
-
 }
 
 //if "POST" posts data on browser, if "GET" gets information from server

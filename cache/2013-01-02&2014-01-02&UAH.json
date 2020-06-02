@@ -1,7 +1,0 @@
-{
-  "error": "Too many requests - You have exceeded your API key last 24 hour requests executed limit, please wait for new requests or contact support for upgrading your existing plan.",
-  "faq_0": "Q: How requests are calculated? A: The request is a single API call to our REST API without \u0060limit\u0060 parameter. Or with \u0060limit\u0060 parameter, the request is counted every 100 data points returned by the API.",
-  "faq_1": "Q: How I can monitor number of requests left? A: Every authenticated API call providing information about the current state of the limits in the HTTP response headers, more info here: https://docs.coinapi.io/#request-limits",
-  "faq_2": "Q: I\u0027m on Professional plan. How I can have more requests? A: Please contact support at the https://www.coinapi.io/support for more information.",
-  "faq_3": "Q: I\u0027m on free plan and I didn\u0027t executed 100 requests yet and got 429 error. A: Free plan contains additional limitations to prevent fraud and usage of the multiple free API keys to obey the limits."
-}

@@ -216,6 +216,25 @@ button:hover::before, button:hover::after{
   display: inline-block;
 }
 
+/*error log section*/
+div#error {
+  visibility: hidden;
+  background-color: rgb(35, 47, 51);
+  border: 1px solid #fa0008;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  height: auto;
+  padding: 20px 30px;
+  color: #fa0008;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 20px;
+  text-shadow: 1px 1px rgba(250,250,250,.3);
+}
+
 /*div which contains canvas*/
 #wrap-up {
   position: relative;

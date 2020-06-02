@@ -5,10 +5,10 @@ const https = require('https');
 const fs = require('fs');
 
 //this function asyncronously reads file
-function readFile(file) {
+function readFileInfo(file) {
   return new Promise((resolve, reject) => {
     fs.readFile(file, (err, data) => {
-      if (err) console.log(err);
+      if (err) console.log('err in readFileInfo: ' + err);
       try {
         resolve(data);
       } catch (err) {
@@ -31,13 +31,24 @@ function existsFile(file) {
   });
 }
 
+//handling rejections in readFileInfo
+async function readFile(file) {
+  try {
+    const data = await readFileInfo(file);
+    return data;
+  } catch (err) {
+    console.log('this error occured in readFile => ' + err);
+    return false;
+  }
+}
+
 //types of request extensions
 const routing = {
   'html':
-                { 'fn': file => readFile('./' + file),
+                { 'fn': file => readFile('.' + file),
                   'type': 'text/html' },
   'js':
-                { 'fn': file => readFile('./' + file),
+                { 'fn': file => readFile('.' + file),
                   'type': 'text/javascript' },
   '/date':
                 { 'fn': str => {
@@ -51,11 +62,14 @@ const routing = {
                 },
                 'type': 'text/plain' },
   'css':
-                { 'fn': file => readFile('./' + file),
+                { 'fn': file => readFile('.' + file),
                   'type': 'text/css' },
   'png':
-               { 'fn': file => readFile('./' + file),
-                 'type': 'image/png' },
+                { 'fn': file => readFile('.' + file),
+                  'type': 'image/png' },
+  'ico':
+                { 'fn': file => readFile('.' + file),
+                  'type': 'image/x-icon' },
 };
 
 //handling rejections in promises
@@ -90,11 +104,11 @@ function grabber(dateStart, dateEnd, currency) {
         result += chunk;
         console.log('+');
       }).on('end', () => {
-        try {
-          resolve(result);
-        } catch (err) {
-          reject(err.message);
+        if (statusCode !== 200) {
+          console.log('in grabber => ' + result);
+          reject(statusCode);
         }
+        resolve(result);
       });
     });
 
@@ -114,11 +128,16 @@ async function researchCache(key) {
     const dateStart = data[0];
     const dateEnd = data[1];
     const currency = data[2];
-    const dataBTC = await grabber(dateStart, dateEnd, currency);
-    fs.writeFile(`./cache/${key}.json`, dataBTC, err => {
-      if (err) console.log(err);
-    });
-    return dataBTC;
+    try {
+      const dataBTC = await grabber(dateStart, dateEnd, currency);
+      fs.writeFile(`./cache/${key}.json`, dataBTC, err => {
+        if (err) console.log('error in writeFile in researchCache => ' + err);
+      });
+      return dataBTC;
+    } catch (err) {
+      console.log('error in researchCache => ' + err);
+      return err;
+    }
   }
 }
 
@@ -135,16 +154,33 @@ async function handleRequest(req, res) {
       extention = '/date';
     } else if (url === '/') {
       extention = 'html';
-      name = 'main.html';
+      name = '/main.html';
     }
     const result = routing[extention];
     if (result !== undefined) {
       const func = result['fn'];
       const typeAns = result['type'];
       const data = await func(name);
-
-      res.writeHead(200, { 'Content-Type': `${typeAns}; charset=utf-8` });
-      res.write(data);
+      if (!data) {
+        console.log('no such file => ' + name);
+        res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+        res.write('No such page found');
+      } else if (typeof data === 'number') {
+        console.log('error occured => ' + name);
+        console.log(data);
+        res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+        if (data === 429) {
+          res.write('Too many requests');
+        }
+      } else {
+        res.writeHead(200, { 'Content-Type': `${typeAns}; charset=utf-8` });
+        res.write(data);
+      }
+      res.end();
+    } else {
+      console.log('no such file => ' + name);
+      res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.write('No such page found');
       res.end();
     }
   } else if (method === 'POST') {
@@ -157,7 +193,7 @@ async function handleRequest(req, res) {
 const server = http.createServer();
 
 server.listen(process.env.PORT || 5000, () => {
-  console.log('Server running on port 8080...');
+  console.log('Server running on port ...');
 });
 
 server.on('request', handleRequest);
