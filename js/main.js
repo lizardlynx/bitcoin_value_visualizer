@@ -9,17 +9,20 @@ const minDates = {
   'UAH': '2011-08-17',
 };
 
-//this function checks if inserted dates are okay
-//and shows div if wrong and styling
+//checks if inserted dates are okay shows div if wrong and styling
 function checkDate(start, end) {
+
+  //variables for dates
   const divStart = document.getElementById('wrong-input-start');
   const divEnd = document.getElementById('wrong-input-end');
   divStart.style.visibility = 'hidden';
   divEnd.style.visibility = 'hidden';
   const date = new Date();
   const minDate = minDates[currency];
-  const dateToday = date.getUTCFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+  const dateToday = date.getUTCFullYear() + '-' +
+    (date.getMonth() + 1) + '-' + date.getDate();
 
+  //finding timestamps
   const startDate = start.split('-').join(' ');
   const endDate = end.split('-').join(' ');
   const minTimestamp = +(new Date(minDate));
@@ -27,6 +30,7 @@ function checkDate(start, end) {
   const startTimestamp = +(new Date(startDate));
   const endTimestamp = +(new Date(endDate));
 
+  //checking dates and styling error div
   if (startTimestamp >= endTimestamp) {
     divStart.style.visibility = 'visible';
     divEnd.style.visibility = 'visible';
@@ -79,27 +83,28 @@ function updateMaxDate() {
   endDate.max = new Date().toISOString().split('T')[0];
 }
 
+//executing when dom content loaded
 document.addEventListener('DOMContentLoaded', () => {
-
   updateMaxDate();
-
   const submitButton = document.getElementById('submit');
 
+  //handling page when clicking submit button
   submitButton.addEventListener('click', event => {
     event.preventDefault();
-
     const errorSect = document.getElementById('error');
     errorSect.style.visibility = 'hidden';
 
+    //finding dates user inputs
     const period = document.getElementsByClassName('submit');
-    let startDate = period[0];
+    const startDate = period[0].value;
     let endDate = period[1];
-
-    startDate = startDate.value;
     const endParsed = endDate.value.split('-');
     endDate = endParsed.join('-');
 
+    //checking if format is right
     const correctFormat = checkDate(startDate, endDate);
+
+    //if right create chart else show error div
     if (correctFormat === true) {
       const loadGif = document.getElementsByClassName('load')[0];
       loadGif.style.visibility = 'visible';
@@ -159,17 +164,7 @@ function loadData(method, url, data, callback) {
 
 //function for "GET"ing data
 function getData(dateStart, dateEnd, currency) {
-
   loadData('GET', `/?${dateStart}?${dateEnd}?${currency}`, null, data => {
     updateChart(data);
-  });
-
-}
-
-//function for "POST"ing data
-function sendData() {
-  const data = 'smth';
-  loadData('POST', 'http://localhost:3000/api', data, data => {
-    console.log(data);
   });
 }

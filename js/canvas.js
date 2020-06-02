@@ -1,22 +1,17 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
-
   const submitButton = document.getElementById('submit');
-
   submitButton.addEventListener('click', event => {
     event.preventDefault();
     ifVariableReady();
   });
-
 });
 
 //this function creates a chart
 function whenReadyExecute() {
-
   const loadGif = document.getElementsByClassName('load')[0];
   loadGif.style.visibility = 'hidden';
-
   // eslint-disable-next-line no-undef
   const chart = new Chart(bitcoinCost);
   chart.drawXY('#e5e5e5');

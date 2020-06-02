@@ -3,7 +3,10 @@
 
 //monthes in parse time
 // eslint-disable-next-line max-len
-const monthes = ['Jan', 'Feb', 'March', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+const monthes = ['Jan', 'Feb', 'March',
+  'Apr', 'May', 'June',
+  'July', 'Aug', 'Sept',
+  'Oct', 'Nov', 'Dec'];
 
 //function for parsing time for better visuals
 function parseTime(time) {
@@ -18,10 +21,8 @@ class Chart {
 
   constructor(bitcoinCost) {
     this.bitcoinCost = bitcoinCost;
-
     this.canvas = document.querySelector('canvas');
     this.c = this.canvas.getContext('2d');
-
   }
 
   //updates width and height
@@ -30,7 +31,6 @@ class Chart {
     this.canvas.height = document.getElementById('wrap-up').clientHeight;
 
     let k = 1;
-
     if (this.canvas.width < 652 && this.canvas.width >= 314) {
       k = 2;
     } else if (this.canvas.width < 314) {
@@ -39,7 +39,6 @@ class Chart {
 
     this.startX = this.canvas.width * k / 10;
     this.startY = this.canvas.height * 8 / 10;
-
     this.endX = this.canvas.width - this.startX;
     this.endY = this.canvas.height - this.startY;
   }
@@ -67,7 +66,6 @@ class Chart {
 
     // eslint-disable-next-line no-undef
     this.c.fillText(currency, this.startX - 10, this.endY - 30);
-
     this.drawLine(this.startX - 40, this.startY, this.endX, this.startY, color);
   }
 
@@ -87,10 +85,8 @@ class Chart {
     const dx = lengthOX / numberOfDays;
 
     for (let i = 1; i <= numberOfDays; i++) {
-
       const dailyPrice = bitcoinCost[i - 1].price;
       bitcoinValues.push([dailyPrice, bitcoinCost[i - 1].day]);
-
       if (dailyPrice > maxBTCValue) {
         maxBTCValue = dailyPrice;
       }
@@ -120,13 +116,10 @@ class Chart {
     }
 
     let value = cost;
-
     this.c.font = '16px Arial';
-
     let i = 0;
 
     while (value <= maxBTCValue) {
-
       if (maxBTCValue <= 1) {
         if (i !== 0) {
           const y = this.startY - (value * lengthOY / maxBTCValue);
@@ -191,7 +184,6 @@ class Chart {
     for (let i = 1; i < numberOfDays; i++) {
       const nextX = this.dots[i][0];
       const nextY = this.dots[i][1];
-
       this.c.strokeStyle = color;
       this.c.lineTo(nextX, nextY);
       this.c.stroke();
@@ -218,7 +210,6 @@ class Chart {
           }
           const circle = info[0];
           const date = info[1];
-
           const dif = circle.clientHeight / 2;
           circle.style.left = x - dif;
           circle.style.top = y - dif;
@@ -235,8 +226,8 @@ class Chart {
         }
       }
     }
-    document.querySelector('canvas').addEventListener('mousemove', moveCircle);
 
+    document.querySelector('canvas').addEventListener('mousemove', moveCircle);
     document.getElementById('wrap-up').addEventListener('mouseleave', () => {
 
       //removes the yellow circle and date when cursor is not on canvas
@@ -247,7 +238,6 @@ class Chart {
 
       //removes eventlistener for calling a yellow circle when clicked "submit"
       const submitButton = document.getElementById('submit');
-
       submitButton.addEventListener('click', event => {
         event.preventDefault();
         // eslint-disable-next-line max-len
