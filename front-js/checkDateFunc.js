@@ -83,7 +83,7 @@ function checkDate(start, end) {
   if (startTimestamp === endTimestamp) {
     divStart.style.visibility = 'visible';
     divEnd.style.visibility = 'visible';
-    const info = 'difference between start and end should be at least 1 day';
+    const info = 'invalid input';
     divStart.innerText = info;
     divEnd.innerText = info;
     return false;
