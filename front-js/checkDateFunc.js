@@ -74,11 +74,11 @@ function checkDate(start, end) {
     swapTime(start, end);
     const temp = start;
     start = end;
-    end = start;
+    end = temp;
     startTimestamp = +(new Date(start));
     endTimestamp = +(new Date(end));
-  } 
-  
+  }
+
   //if start and end are the same day
   if (startTimestamp === endTimestamp) {
     divStart.style.visibility = 'visible';
