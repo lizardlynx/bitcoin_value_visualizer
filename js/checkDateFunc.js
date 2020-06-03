@@ -2,8 +2,14 @@
 
 const minDates = {
   'USD': '2011-08-17',
-  'UAH': '2011-08-17',
+  'UAH': '2017-03-17',
 };
+
+//monthes in parse time
+const monthes = ['Jan', 'Feb', 'March',
+  'Apr', 'May', 'June',
+  'July', 'Aug', 'Sept',
+  'Oct', 'Nov', 'Dec'];
 
 //this function updates max allowed dates
 function updateMaxDate() {
@@ -12,6 +18,14 @@ function updateMaxDate() {
   const endDate = period[1];
   startDate.max = new Date().toISOString().split('T')[0];
   endDate.max = new Date().toISOString().split('T')[0];
+}
+
+//function for parsing time for better visuals
+function parseTime(time) {
+  const date = time.split('T')[0];
+  const ymd = date.split('-');
+  const month = monthes[ymd[1] - 1];
+  return ymd[2] + ' ' + month + ' ' + ymd[0];
 }
 
 //checks if inserted dates are okay shows div if wrong and styling
@@ -39,6 +53,7 @@ function checkDate(start, end) {
   if (startTimestamp >= endTimestamp) {
     divStart.style.visibility = 'visible';
     divEnd.style.visibility = 'visible';
+    
     divStart.innerText = 'Start date should be less than the end date.';
     divEnd.innerText = 'Start date should be less than the end date.';
     return false;
@@ -77,18 +92,4 @@ function checkDate(start, end) {
     divEnd.innerText = inf;
     return false;
   } else return true;
-}
-
-//monthes in parse time
-const monthes = ['Jan', 'Feb', 'March',
-  'Apr', 'May', 'June',
-  'July', 'Aug', 'Sept',
-  'Oct', 'Nov', 'Dec'];
-
-//function for parsing time for better visuals
-function parseTime(time) {
-  const date = time.split('T')[0];
-  const ymd = date.split('-');
-  const month = monthes[ymd[1] - 1];
-  return ymd[2] + ' ' + month + ' ' + ymd[0];
 }

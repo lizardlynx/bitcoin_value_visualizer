@@ -15,19 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault();
     const errorSect = document.getElementById('error');
     errorSect.style.visibility = 'hidden';
+    const divStart = document.getElementById('wrong-input-start');
+    const divEnd = document.getElementById('wrong-input-end');
+    divStart.style.visibility = 'hidden';
+    divEnd.style.visibility = 'hidden';
 
     //finding dates user inputs
     const period = document.getElementsByClassName('submit');
     const startDate = period[0].value;
-    let endDate = period[1];
-    const endParsed = endDate.value.split('-');
-    endDate = endParsed.join('-');
+    const endDate = period[1].value;
 
     //checking if format is right
-    const correctFormat = checkDate(startDate, endDate);
+    const dates = checkDate(startDate, endDate);
+    console.log(dates);
 
     //if right create chart else show error div
-    if (correctFormat === true) {
+    if (dates) {
       const loadGif = document.getElementsByClassName('load')[0];
       loadGif.style.visibility = 'visible';
       const currencies = document.getElementsByClassName('currency');
@@ -36,9 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
           currency = currencies[i].id;
         }
       }
-      getData(startDate, endDate, currency);
+      getData(dates[0], dates[1], currency);
     } else {
-      console.log(correctFormat + ' format of date input');
+      console.log(dates + ' format of date input');
     }
   });
 });

@@ -2,8 +2,8 @@
 
 const http = require('http');
 const fs = require('fs');
-const {existsFile, readFile} = require('./js/fileFuncs.js');
-const {grabber} = require('./js/grabber.js');
+const {existsFile, readFile} = require('./node-js/fileFuncs.js');
+const {grabber} = require('./node-js/grabber.js');
 
 //types of request extensions
 const memo = {
