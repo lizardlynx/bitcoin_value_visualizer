@@ -1,21 +1,6 @@
 /* eslint-disable no-unused-vars */
 'use strict';
 
-//monthes in parse time
-// eslint-disable-next-line max-len
-const monthes = ['Jan', 'Feb', 'March',
-  'Apr', 'May', 'June',
-  'July', 'Aug', 'Sept',
-  'Oct', 'Nov', 'Dec'];
-
-//function for parsing time for better visuals
-function parseTime(time) {
-  const date = time.split('T')[0];
-  const ymd = date.split('-');
-  const month = monthes[ymd[1] - 1];
-  return ymd[2] + ' ' + month + ' ' + ymd[0];
-}
-
 //class chart creates a chart
 class Chart {
 

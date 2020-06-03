@@ -1,8 +1,9 @@
 'use strict';
 
 const http = require('http');
-const https = require('https');
 const fs = require('fs');
+const {existsFile, readFile} = require('./js/fileFuncs.js');
+const {grabber} = require('./js/grabber.js');
 
 //types of request extensions
 const memo = {
@@ -13,53 +14,6 @@ const memo = {
   'ico': 'image/x-icon',
   '/date': 'text/plain',
 };
-
-//handling rejections in promises
-process.on('unhandledRejection', error => {
-  console.log('rejection: ', error);
-});
-
-process.on('rejectionHandled', promise => {
-  console.log('rejection handled: ' + promise);
-});
-
-//this function asyncronously checkes if file exists
-function existsFile(file) {
-  return new Promise((resolve, reject) => {
-    fs.exists(file, exists => {
-      try {
-        resolve(exists);
-      } catch (err) {
-        reject(err.message);
-      }
-    });
-  });
-}
-
-//this function asyncronously reads file
-function readFileInfo(file) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(file, (err, data) => {
-      if (err) console.log('err in readFileInfo: ' + err);
-      try {
-        resolve(data);
-      } catch (err) {
-        reject(err.message);
-      }
-    });
-  });
-}
-
-//handling rejections in readFileInfo
-async function readFile(file) {
-  try {
-    const data = await readFileInfo(file);
-    return data;
-  } catch (err) {
-    console.log('this error occured in readFile => ' + err);
-    return false;
-  }
-}
 
 //get parameters passed by user
 function getDataBTC(str) {
@@ -72,41 +26,10 @@ function getDataBTC(str) {
   return dataBTC;
 }
 
-//options for grabber
-const options = {
-  headers: {
-    'X-CoinAPI-Key': 'DCA96673-BC62-4606-95C7-44FC5B657F21',
-  }
-};
-
-
-//grabber for cryptocurrencies
-function grabber(dateStart, dateEnd, currency) {
-  return new Promise((resolve, reject) => {
-    https.get(`https://rest.coinapi.io/v1/ohlcv/BTC/${currency}/history?period_id=1DAY&time_start=${dateStart}T00:00:00&time_end=${dateEnd}T00:00:00&limit=100000&include_empty_items=false`, options, res => {
-      const { statusCode } = res;
-      console.log(statusCode);
-      let result = '';
-      res.on('data', chunk => {
-        result += chunk;
-        console.log('+');
-      }).on('end', () => {
-        if (statusCode !== 200) {
-          console.log('in grabber => ' + result);
-          reject(statusCode);
-        } else {
-          resolve(result);
-        }
-      });
-    });
-  });
-}
-
 //cache function
 async function researchCache(key) {
   const exists = await existsFile(`./cache/${key}.json`);
   if (exists) {
-    console.log('from cache');
     const cache = await readFile(`./cache/${key}.json`);
     return cache;
   } else {
@@ -154,7 +77,6 @@ async function handleRequest(req, res) {
       res.write('No such page found');
     } else if (typeof data === 'number') {
       console.log('error occured => ' + name);
-      console.log(data);
       res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
       if (data === 429) {
         res.write('Too many requests');
@@ -178,3 +100,12 @@ server.listen(process.env.PORT || 5000, () => {
 });
 
 server.on('request', handleRequest);
+
+//handling rejections in promises
+process.on('unhandledRejection', error => {
+  console.log('rejection: ', error);
+});
+
+process.on('rejectionHandled', promise => {
+  console.log('rejection handled: ' + promise);
+});
