@@ -1,10 +1,5 @@
 /* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 'use strict';
-
-// eslint-disable-next-line prefer-const
-let bitcoinCost = [];
-let currency = 'USD';
 
 //executing when dom content loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -26,6 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const startDate = period[0].value;
     const endDate = period[1].value;
 
+    const currencies = document.getElementsByClassName('currency');
+    for (let i = 0; i < currencies.length; i++) {
+      if (currencies[i].checked === true) {
+        currency = currencies[i].id;
+      }
+    }
+
     //checking if format is right
     const dates = checkDate(startDate, endDate);
 
@@ -33,12 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dates) {
       const loadGif = document.getElementsByClassName('load')[0];
       loadGif.style.visibility = 'visible';
-      const currencies = document.getElementsByClassName('currency');
-      for (let i = 0; i < currencies.length; i++) {
-        if (currencies[i].checked === true) {
-          currency = currencies[i].id;
-        }
-      }
       getData(dates[0], dates[1], currency);
     } else {
       console.log(dates + ' format of date input');

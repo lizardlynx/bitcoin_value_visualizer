@@ -82,6 +82,8 @@ async function handleRequest(req, res) {
       res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
       if (data === 429) {
         res.write('Too many requests');
+      } else {
+        res.write(data);
       }
     } else {
       res.writeHead(200, { 'Content-Type': `${typeAns}; charset=utf-8` });

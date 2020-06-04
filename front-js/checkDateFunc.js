@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-unused-vars */
 'use strict';
 
@@ -5,6 +6,10 @@ const minDates = {
   'USD': '2011-08-17',
   'UAH': '2017-03-16',
 };
+
+// eslint-disable-next-line prefer-const
+let bitcoinCost = [];
+let currency = 'USD';
 
 //this function updates max allowed dates
 function updateMaxDate() {
@@ -18,13 +23,14 @@ function updateMaxDate() {
 //function swaps dates when input is not correct
 function swapTime(startDate, endDate) {
   const calendars = document.getElementsByClassName('submit');
-  const calendarStart = calendars[0].value = endDate;
-  const calendarEnd = calendars[1].value = startDate;
+  calendars[0].value = endDate;
+  calendars[1].value = startDate;
 }
 
 function setTime(index) {
   // eslint-disable-next-line no-undef
   const minDate = minDates[currency];
+  console.log(minDate);
   const date = new Date();
   let month = (date.getUTCMonth() + 1).toString();
   let day = (date.getUTCDate()).toString();
@@ -40,7 +46,7 @@ function setTime(index) {
     value = minDate;
   } else value = dateToday;
   const calendars = document.getElementsByClassName('submit');
-  const calendar = calendars[index].value = value;
+  calendars[index].value = value;
 }
 
 //checks if inserted dates are okay shows div if wrong and styling
@@ -52,6 +58,7 @@ function checkDate(start, end) {
   const date = new Date();
   // eslint-disable-next-line no-undef
   const minDate = minDates[currency];
+  console.log(minDate, currency);
   let month = (date.getUTCMonth() + 1).toString();
   let day = (date.getUTCDate()).toString();
   if (month.length !== 2) {
