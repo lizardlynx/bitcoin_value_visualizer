@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 
 const minDates = {
   'USD': '2011-08-17',
-  'UAH': '2011-08-17',
+  'UAH': '2017-03-16',
 };
 
 //this function updates max allowed dates
@@ -22,6 +23,7 @@ function swapTime(startDate, endDate) {
 }
 
 function setTime(index) {
+  // eslint-disable-next-line no-undef
   const minDate = minDates[currency];
   const date = new Date();
   let month = (date.getUTCMonth() + 1).toString();
@@ -29,7 +31,7 @@ function setTime(index) {
   if (month.length !== 2) {
     month = '0' + month;
   }
-  if(day.length !== 2) {
+  if (day.length !== 2) {
     day = '0' + day;
   }
   const dateToday = date.getUTCFullYear() + '-' + month + '-' + day;
@@ -48,13 +50,14 @@ function checkDate(start, end) {
   const divStart = document.getElementById('wrong-input-start');
   const divEnd = document.getElementById('wrong-input-end');
   const date = new Date();
+  // eslint-disable-next-line no-undef
   const minDate = minDates[currency];
   let month = (date.getUTCMonth() + 1).toString();
   let day = (date.getUTCDate()).toString();
   if (month.length !== 2) {
     month = '0' + month;
   }
-  if(day.length !== 2) {
+  if (day.length !== 2) {
     day = '0' + day;
   }
   const dateToday = (date.getUTCFullYear() + '-' + month + '-' + day);
@@ -110,12 +113,12 @@ function checkDate(start, end) {
     end = dateToday;
     endTimestamp = +(new Date(end));
   }
-  
+
   //if in input dates there are no bitcoin values
   if ((minTimestamp > startTimestamp && minTimestamp >= endTimestamp) ||
    (maxTimestamp <= startTimestamp && maxTimestamp < endTimestamp) ||
    (minTimestamp > startTimestamp && maxTimestamp < endTimestamp) ||
-   (maxTimestamp <= startTimestamp && minTimestamp >= endTimestamp)){
+   (maxTimestamp <= startTimestamp && minTimestamp >= endTimestamp)) {
     divStart.style.visibility = 'visible';
     divEnd.style.visibility = 'visible';
     setTime(0);

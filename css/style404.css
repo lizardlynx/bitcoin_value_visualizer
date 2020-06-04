@@ -1,0 +1,41 @@
+/*styling body*/
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(35, 47, 51);
+}
+
+/*styling text*/
+@font-face {
+  font-family: 'bitcoinFont';
+  src: url(../font/Vanadine-Regular.ttf);
+}
+
+h1 {
+  font-family: 'bitcoinFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #ffffff;
+}
+
+div {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 80px;
+  padding: 20px;
+  width: 500px;
+  border-bottom: 1px solid #fca311;
+}
+
+/*styling 404*/
+span {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 70;
+  width: 40%;
+}
+
+img {
+  border-radius: 50%;
+  width: 60px;
+  margin-bottom: -5px;
+}

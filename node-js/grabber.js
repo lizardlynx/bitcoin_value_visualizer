@@ -31,4 +31,4 @@ function grabber(dateStart, dateEnd, currency) {
   });
 }
 
-module.exports = {grabber};
+module.exports = { grabber };

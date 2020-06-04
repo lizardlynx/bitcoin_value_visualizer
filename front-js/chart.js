@@ -59,7 +59,7 @@ class Chart {
     this.chartHeightAndWidth();
 
     this.drawLine(this.startX, this.startY, this.startX, this.endY, color);
-    this.c.font = '18px Verdana';
+    this.c.font = 'bold 18px bitcoinFontBold';
     this.c.fillStyle = color;
     this.color = color;
 
@@ -115,7 +115,7 @@ class Chart {
     }
 
     let value = cost;
-    this.c.font = '16px Arial';
+    this.c.font = 'bold 16px bitcoinFontBold';
     let i = 0;
 
     while (value <= maxBTCValue) {

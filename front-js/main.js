@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 'use strict';
 
@@ -27,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //checking if format is right
     const dates = checkDate(startDate, endDate);
-    console.log(dates);
 
     //if right create chart else show error div
     if (dates) {

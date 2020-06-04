@@ -10,18 +10,24 @@ body {
 }
 
 /*styling header*/
+@font-face {
+  font-family: 'bitcoinFontBold';
+  src: url(../font/Vanadine-Bold.ttf);
+}
+
 h1 {
   font-weight: 30;
   color: #ffffff;
   margin: 30px;
   text-align: center;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'bitcoinFontBold', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 50;
 }
 
 span#coin {
   cursor: text;
   display: inline-block;
+  margin-right: 8px;
 }
 
 img {
@@ -56,7 +62,7 @@ section.date {
 
 label {
   color: #ffffff;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'bitcoinFontBold', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 22;
 }
 
@@ -76,6 +82,7 @@ input.submit {
   padding: 0 2em;
   width: 206px;
   padding: 0px 5px;
+  font-family: 'bitcoinFontBold', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 input.submit:hover {
@@ -118,9 +125,8 @@ div#wrong-input-start, div#wrong-input-end {
   visibility: hidden;
   width: 206px;
   border-bottom: 1px solid #fa0008;
-  color:  rgba(240, 62, 62, 0.8);
-  text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color:  #ffffff;
+  font-family: 'bitcoinFontBold', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 21;
   margin-bottom: 5px;
   display: block;
@@ -143,7 +149,7 @@ section label.currency-customizing {
   transition: 400ms ease all;
   cursor: pointer;
   width: 150px;
-  font-size: 20;
+  font-size: 28;
 }
 
 section label.currency-customizing:hover {
@@ -165,11 +171,13 @@ button {
   color: rgb(35, 47, 51);
   position: relative;
   height: 40px;
-  font-size: 1.4em;
+  font-size: 1.5em;
   padding: 0 2em;
   cursor: pointer;
   transition: 400ms ease all;
   outline: none;
+  font-family: 'bitcoinFontBold', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 25;
 }
 
 button:hover{
@@ -227,8 +235,8 @@ div#error {
   width: 400px;
   height: auto;
   padding: 20px 30px;
-  color: #fa0008;
-  font-family: Helvetica, Arial, sans-serif;
+  color: #ffffff;
+  font-family: 'bitcoinFontBold', Helvetica, Arial, sans-serif;
   font-size: 13px;
   font-weight: bold;
   line-height: 20px;
@@ -291,6 +299,8 @@ canvas {
 
 /*customizing info class*/
 div.info {
+  font-family: 'bitcoinFontBold', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 25;
   position: absolute;
   visibility: hidden;
   color: #ffffff;

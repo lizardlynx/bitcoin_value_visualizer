@@ -2,13 +2,13 @@
 
 const http = require('http');
 const fs = require('fs');
-const {existsFile, readFile} = require('./node-js/fileFuncs.js');
-const {grabber} = require('./node-js/grabber.js');
+const { existsFile, readFile } = require('./node-js/fileFuncs.js');
+const { grabber } = require('./node-js/grabber.js');
 
 //types of request extensions
-const memo = {
+const mime = {
   'html': 'text/html',
-  'js': 'text/javascript',
+  'js': 'application/javascript',
   'css': 'text/css',
   'png': 'image/png',
   'ico': 'image/x-icon',
@@ -65,16 +65,17 @@ async function handleRequest(req, res) {
       name = '/main.html';
     }
     let data = null;
-    const typeAns = memo[extention];
+    const typeAns = mime[extention];
     if (extention === '/date') {
       data = await getDataBTC(name);
     } else {
       data = await readFile('.' + name);
     }
     if (!data) {
+      const pageNotFound = await readFile('./html/pageNotFound.html');
       console.log('no such file => ' + name);
-      res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
-      res.write('No such page found');
+      res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.write(pageNotFound);
     } else if (typeof data === 'number') {
       console.log('error occured => ' + name);
       res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
