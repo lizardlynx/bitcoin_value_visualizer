@@ -30,7 +30,6 @@ function swapTime(startDate, endDate) {
 function setTime(index) {
   // eslint-disable-next-line no-undef
   const minDate = minDates[currency];
-  console.log(minDate);
   const date = new Date();
   let month = (date.getUTCMonth() + 1).toString();
   let day = (date.getUTCDate()).toString();
@@ -58,7 +57,6 @@ function checkDate(start, end) {
   const date = new Date();
   // eslint-disable-next-line no-undef
   const minDate = minDates[currency];
-  console.log(minDate, currency);
   let month = (date.getUTCMonth() + 1).toString();
   let day = (date.getUTCDate()).toString();
   if (month.length !== 2) {

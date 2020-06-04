@@ -8,7 +8,7 @@ body {
 /*styling text*/
 @font-face {
   font-family: 'bitcoinFont';
-  src: url(../font/Vanadine-Regular.ttf);
+  src: url(../font/Vanadine-Bold.ttf);
 }
 
 h1 {
