@@ -24,11 +24,11 @@ This project uses api from [here](https://www.coinapi.io/).
 For better and faster working added cache.
 
 ## Issues
-The api, that is used for this project allows to get not more then 100.000 items, which means that user cannot choose more than 100.000 days.  
-Ending date is not included in shown period of time.
+The api, that is used for this project allows to get not more then 100 items per 1 call.
+Ending date is not included in shown period of time.  
 Only 100 requests a day available.
 
 ## TODO
 * improve interface;  
-* stop site when loading very long;
-* add more currencies.
+* add more currencies;  
+* add often chosen dates.
