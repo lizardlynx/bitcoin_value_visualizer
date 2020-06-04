@@ -12,7 +12,7 @@ const options = {
 //grabber for cryptocurrencies
 function grabber(dateStart, dateEnd, currency) {
   return new Promise((resolve, reject) => {
-    https.get(`https://rest.coinapi.io/v1/ohlcv/BTC/${currency}/history?period_id=1DAY&time_start=${dateStart}T00:00:00&time_end=${dateEnd}T00:00:00&limit=100000&include_empty_items=false`, options, res => {
+    https.get(`https://rest.coinapi.io/v1/ohlcv/BTC/${currency}/history?period_id=1DAY&time_start=${dateStart}T00:00:00&time_end=${dateEnd}T00:00:00&include_empty_items=false`, options, res => {
       const { statusCode } = res;
       console.log(statusCode);
       let result = '';

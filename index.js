@@ -30,6 +30,7 @@ function getDataBTC(str) {
 async function researchCache(key) {
   const exists = await existsFile(`./cache/${key}.json`);
   if (exists) {
+    console.log('from cache');
     const cache = await readFile(`./cache/${key}.json`);
     return cache;
   } else {

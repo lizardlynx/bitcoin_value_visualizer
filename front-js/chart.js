@@ -237,8 +237,7 @@ class Chart {
 
       //removes eventlistener for calling a yellow circle when clicked "submit"
       const submitButton = document.getElementById('submit');
-      submitButton.addEventListener('click', event => {
-        event.preventDefault();
+      submitButton.addEventListener('click', () => {
         // eslint-disable-next-line max-len
         document.querySelector('canvas').removeEventListener('mousemove', moveCircle);
       });
