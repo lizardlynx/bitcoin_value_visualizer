@@ -8,8 +8,10 @@ const minDates = {
 };
 
 // eslint-disable-next-line prefer-const
-let bitcoinCost = [];
-let currency = 'USD';
+const bitcoin = {
+  bitcoinCost: [],
+  currency: 'USD',
+};
 
 //this function updates max allowed dates
 function updateMaxDate() {
@@ -29,7 +31,7 @@ function swapTime(startDate, endDate) {
 
 function setTime(index) {
   // eslint-disable-next-line no-undef
-  const minDate = minDates[currency];
+  const minDate = minDates[bitcoin.currency];
   const date = new Date();
   let month = (date.getUTCMonth() + 1).toString();
   let day = (date.getUTCDate()).toString();
@@ -56,7 +58,7 @@ function checkDate(start, end) {
   const divEnd = document.getElementById('wrong-input-end');
   const date = new Date();
   // eslint-disable-next-line no-undef
-  const minDate = minDates[currency];
+  const minDate = minDates[bitcoin.currency];
   let month = (date.getUTCMonth() + 1).toString();
   let day = (date.getUTCDate()).toString();
   if (month.length !== 2) {

@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currencies = document.getElementsByClassName('currency');
     for (let i = 0; i < currencies.length; i++) {
       if (currencies[i].checked === true) {
-        currency = currencies[i].id;
+        bitcoin.currency = currencies[i].id;
       }
     }
 
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dates) {
       const loadGif = document.getElementsByClassName('load')[0];
       loadGif.style.visibility = 'visible';
-      getData(dates[0], dates[1], currency);
+      getData(dates[0], dates[1], bitcoin.currency);
     } else {
       console.log(dates + ' format of date input');
     }
@@ -74,7 +74,7 @@ function updateChart(data) {
     for (const day of bitcoinData) {
       const dataByDay = { day: day.time_open,
         price: day.price_close };
-      bitcoinCost.push(dataByDay);
+      bitcoin.bitcoinCost.push(dataByDay);
     }
   } catch (err) {
     if (typeof data === 'string') {

@@ -1,0 +1,50 @@
+[
+  {
+    "time_period_start": "2020-06-01T00:00:00.0000000Z",
+    "time_period_end": "2020-06-02T00:00:00.0000000Z",
+    "time_open": "2020-06-01T00:00:00.2190000Z",
+    "time_close": "2020-06-01T23:59:59.9960000Z",
+    "price_open": 9444.610000000,
+    "price_high": 10429.260000000,
+    "price_low": 9414.600000000,
+    "price_close": 10208.900000000,
+    "volume_traded": 48087.154092968,
+    "trades_count": 193142
+  },
+  {
+    "time_period_start": "2020-06-02T00:00:00.0000000Z",
+    "time_period_end": "2020-06-03T00:00:00.0000000Z",
+    "time_open": "2020-06-02T00:00:00.1319000Z",
+    "time_close": "2020-06-02T23:59:58.4841100Z",
+    "price_open": 10208.960000000,
+    "price_high": 10241.260000000,
+    "price_low": 9135.680000000,
+    "price_close": 9522.460000000,
+    "volume_traded": 77210.409637046,
+    "trades_count": 254510
+  },
+  {
+    "time_period_start": "2020-06-03T00:00:00.0000000Z",
+    "time_period_end": "2020-06-04T00:00:00.0000000Z",
+    "time_open": "2020-06-03T00:00:00.6547200Z",
+    "time_close": "2020-06-03T23:59:59.9452230Z",
+    "price_open": 9521.530000000,
+    "price_high": 9699.950000000,
+    "price_low": 9310.900000000,
+    "price_close": 9668.070000000,
+    "volume_traded": 24386.248895167,
+    "trades_count": 123784
+  },
+  {
+    "time_period_start": "2020-06-04T00:00:00.0000000Z",
+    "time_period_end": "2020-06-05T00:00:00.0000000Z",
+    "time_open": "2020-06-04T00:00:01.0217030Z",
+    "time_close": "2020-06-04T23:59:59.8243590Z",
+    "price_open": 9668.060000000,
+    "price_high": 9888.000000000,
+    "price_low": 9430.000000000,
+    "price_close": 9788.030000000,
+    "volume_traded": 30614.048082402,
+    "trades_count": 146438
+  }
+]

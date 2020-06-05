@@ -64,7 +64,7 @@ class Chart {
     this.color = color;
 
     // eslint-disable-next-line no-undef
-    this.c.fillText(currency, this.startX - 10, this.endY - 30);
+    this.c.fillText(bitcoin.currency, this.startX - 10, this.endY - 30);
     this.drawLine(this.startX - 40, this.startY, this.endX, this.startY, color);
   }
 
@@ -215,7 +215,7 @@ class Chart {
 
           //pop-up
           // eslint-disable-next-line no-undef
-          const price = ` ${document.getElementById(currency).value}`;
+          const price = ` ${document.getElementById(bitcoin.currency).value}`;
           circle.setAttribute('price', dots[i][2] + price);
 
           //dates
