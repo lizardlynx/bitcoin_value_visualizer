@@ -11,7 +11,7 @@ User enters two dates:
 * starting point;
 * ending point.  
 
-it allows to show which exactly period of time where the bitcoin was changing user wnats to see.  
+it allows to show which exactly period of time where the bitcoin was changing user wants to see.  
 
 User can also choose:  
 * currency.  
